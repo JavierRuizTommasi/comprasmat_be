@@ -67,3 +67,14 @@ exports.findMyProducts = async (req, res, next) => {
     })
 }
 
+exports.deleteMyProductsGroup = async (req, res, next) => {
+    const deleteMyProducts = req.body
+    // console.log(deleteMyProducts)
+    
+    await myProducts.deleteMany(deleteMyProducts, (err, myproduct) => {
+        if (err) res.json({ error: err})
+        res.json({message: 'myProduct Selection deleted successfully'})
+    })
+}
+
+

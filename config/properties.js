@@ -3,14 +3,14 @@
 //     DB: 'mongodb+srv://apiUser:compras8585@cluster0.gqjxv.mongodb.net/test?retryWrites=true&w=majority',
 //     CHECK_NEWTENDER: 300000,
 //     CHECK_1HORA: 3600000,
-//     URLAPI: 'https://proagrocomprasapi.herokuapp.com/api/',
+//     URLAPI: 'https://proagrocomprasapiprod.herokuapp.com/api/',
 //     URLHOME: 'http://proveedores.cf'
 // }
 module.exports = {
     PORT: process.env.PORT || 8080,
     // DB: 'mongodb://127.0.0.1:27017/test',
     // DB: 'mongodb+srv://apiUser:compras8585@cluster0.gqjxv.mongodb.net/test?retryWrites=true&w=majority',
-    DB: process.env.DATABASE_URL || 'mongodb://127.0.0.1:27017/test',
+    DB: process.env.DATABASE_URL || 'mongodb://127.0.0.1:27017/prod',
     //DB: 'mongodb://myTest:myTest@66.97.44.230:27017/test',
     //DB: process.env.PORT == 8080 ? 'mongodb://127.0.0.1:27017/test',
     CHECK_NEWTENDER: process.env.CHECK_NEWTENDER || 360000,

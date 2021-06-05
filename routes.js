@@ -134,6 +134,7 @@ module.exports = (router) => {
     router.delete('/myproducts/:id', myProducts.deleteMyProduct)
     router.get('/findmyproducts/:usuario', myProducts.findMyProducts)
     router.post('/insertmyproducts', myProducts.insertMyProducts)
+    router.put('/deletemyproducts', myProducts.deleteMyProductsGroup)
 
     router.post('/sendemail', Emails.sendEmail)
 

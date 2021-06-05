@@ -21,7 +21,11 @@ myProductsSchema.statics = {
     },
     insert: function (updateData, ub) {
         this.insertMany(updateData, { ordered: false }, ub)
+    },
+    deleteMany: function (query, ub) {
+        this.remove(query, ub)
     }
+
 }
 
 const myProductsModel = mongoose.model('myProducts', myProductsSchema)
