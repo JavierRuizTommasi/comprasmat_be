@@ -13,7 +13,8 @@ const suppliersSchema = new Schema({
     },
     usuario: {
         type: String,
-        require: true
+        require: true,
+        unique: true
     },
     domicilio: {
         type: String

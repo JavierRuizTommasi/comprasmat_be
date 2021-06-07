@@ -39,7 +39,7 @@ exports.createUser = async (req, res, next) => {
     const supplier = await Suppliers.findOne({ CUIT: newUser.CUIT }, (err, supplier) => {
       // console.log('Find supplier',supplier)
 
-      if (err) return res.send({ message: 'Server error!' });
+      if (err) return res.status(200).send({ message: 'Server error!' });
       if (!supplier) {
         // Sino existe lo creo
         const newSupplier = {
@@ -54,36 +54,37 @@ exports.createUser = async (req, res, next) => {
         
         Suppliers.create(newSupplier, (err, supplier) => {
             // console.log('Create supplier',supplier)
-            if (err) res.send({ message: 'Server error!' });
+            if (err && err.code === 11000) res.status(200).send({ message: 'Usuario already exists' })
+            if (err && err.code !== 11000) res.status(200).send({ message: 'Server error!' });
         })
       }
     })
 
     // console.log('Prev supplier', supplier)
     if (supplier) {
-        newUser.usuario = supplier.usuario
+      newUser.usuario = supplier.usuario
         // console.log('newUser 2', newUser )
+
+      const user = await User.create(newUser, (err, user) => {
+        // console.log('Def User', user)
+        if (err && err.code === 11000) res.status(200).send({ message: 'Email already exists' })
+        if (err && err.code !== 11000) res.status(200).send({ message: err.message })
+
+        // console.log('User created')
+        // res.send({ Email: info.response})
+        if (user) {
+          const dataUser = {
+              usuario: user.usuario,
+              nombre: user.nombre,
+              email: user.email
+          }
+          // response 
+          // console.log('User created', dataUser)
+          res.send({ dataUser });
+          //res.json({ message: 'User created successfully'})
+        }
+      })
     }
-
-    // console.log('New User', newUser)
-    const user = await User.create(newUser, (err, user) => {
-      // console.log('Def User', user)
-      if (err && err.code === 11000) return res.send({ message: 'Email already exists' })
-      if (err) res.json({ message: err.message })
-
-      // console.log('User created')
-      // res.send({ Email: info.response})
-      
-      const dataUser = {
-          usuario: user. usuario,
-          nombre: user.nombre,
-          email: user.email
-      }
-      // response 
-      // console.log('User created', dataUser)
-      res.send({ dataUser });
-      //res.json({ message: 'User created successfully'})
-    })
 } 
 
 exports.welcome = (req, res, next) => {
