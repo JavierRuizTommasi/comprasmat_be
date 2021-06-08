@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const properties = require('./config/properties')
 const Routes = require('./routes')
 const db = require('./config/database')
+const logger = require('express-log-mongo');
 
 var morgan = require('morgan')
 
@@ -31,6 +32,14 @@ app.use(cors({
 app.use(bodyParserJson)
 app.use(bodyParserURLEncoded)
 
+// Init Logger
+// console.log(properties.DB)
+app.use(logger(':date :method :url :status :remote-addr :response-time :http-version :remote-user :res[content-length] :referrer :user-agent', {
+    url: properties.DB,
+    db: properties.DBLogs,
+    collection: 'logs'
+}));
+ 
 // GridFs
 const methodOverride = require('method-override')
 app.use(methodOverride('_method'))
