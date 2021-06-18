@@ -114,7 +114,7 @@ exports.welcome = (req, res, next) => {
               <h1 style="font:24px Helvetica,Arial,sans-serif; font-weight: bold; line-height:1.5;">Activaci&oacute;n cuenta de Usuario Proveedor</h1>
           </div>
           <br>
-          <p style="font:14px Helvetica,Arial,sans-serif;">Estimado Proveedor <strong>${newUser.nombre}</strong> (Usuario: <strong>${newUser.usuario})</strong>.</p>
+          <p style="font:14px Helvetica,Arial,sans-serif;">Estimado Proveedor <strong>${newUser.nombre}</strong> (Empresa: <strong>${newUser.usuario})</strong>.</p>
           <p style="font:14px Helvetica,Arial,sans-serif;">Si le interesa acercarnos su ofertas por favor haga click en el link de abajo asi podremos confirmar su cuenta de usuario.
             <br>
             <a href="${properties.URLAPI}autentication/${accessToken}">${properties.URLAPI}autentication/${accessToken}</a>
@@ -128,7 +128,7 @@ exports.welcome = (req, res, next) => {
               <h1 style="font:24px Helvetica,Arial,sans-serif; font-weight: bold; line-height:1.5;">User Supplier account activation</h1>
           </div>
           <br>
-          <p style="font:14px Helvetica,Arial,sans-serif;">Dear Supplier <strong>${newUser.nombre}</strong> (User: <strong>${newUser.usuario})</strong>.</p>
+          <p style="font:14px Helvetica,Arial,sans-serif;">Dear Supplier <strong>${newUser.nombre}</strong> (Brand: <strong>${newUser.usuario})</strong>.</p>
           <p style="font:14px Helvetica,Arial,sans-serif;">If you are interest to send us your Request for quotations please click on the link below in order we can activate your user account
             <br>
             <a href="${properties.URLAPI}autentication/${accessToken}">${properties.URLAPI}autentication/${accessToken}</a>
