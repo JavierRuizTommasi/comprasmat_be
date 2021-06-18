@@ -6,7 +6,6 @@
 //     URLAPI: 'https://proagrocomprasapiprod.herokuapp.com/api/',
 //     URLHOME: 'http://proveedores.cf'
 //
-//
 // }
 module.exports = {
     PORT: process.env.PORT || 8080,
