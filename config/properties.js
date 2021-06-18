@@ -3,7 +3,7 @@
 //     DB: 'mongodb+srv://apiUser:compras8585@cluster0.gqjxv.mongodb.net/test?retryWrites=true&w=majority',
 //     CHECK_NEWTENDER: 300000,
 //     CHECK_1HORA: 3600000,
-//     URLAPI: 'https://proagrocomprasapiprod.herokuapp.com/api/',
+//     URLAPI: 'https://proagrocomprasprod.herokuapp.com/api/',
 //     URLHOME: 'http://proveedores.cf'
 //
 // }
