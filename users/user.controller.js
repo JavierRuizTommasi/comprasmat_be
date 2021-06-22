@@ -120,6 +120,7 @@ exports.welcome = (req, res, next) => {
             <a href="${properties.URLAPI}autentication/${accessToken}">${properties.URLAPI}autentication/${accessToken}</a>
           </p>
           <p style="font:14px Helvetica,Arial,sans-serif;">Recuerde que de esta manera usted podr&aacute; acercarnos su oferta y ser tenido en cuenta en el an&aacute;lisis de compra de los insumos que usted nos pudiera proveer al momento de generarse una Solicitud de Cotizaci&oacute;n.</p>
+          <p>Departamento de Compras - Proagro</p>
         `
     } else {
         contentHTML = `
@@ -134,6 +135,7 @@ exports.welcome = (req, res, next) => {
             <a href="${properties.URLAPI}autentication/${accessToken}">${properties.URLAPI}autentication/${accessToken}</a>
           </p>
           <p style="font:14px Helvetica,Arial,sans-serif;">Take into account that this is the way you will send us your Request for quotations and be considered as a supplie provider during our purchase process at the time the Requests are generated.</p>
+          <p>Purchase Departament - Proagro</p>
         `
     }
     // console.log(contentHTML)
