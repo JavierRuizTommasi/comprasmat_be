@@ -19,7 +19,7 @@ exports.sendEmail = async (req, res, next) => {
             <p>En el d&iacute;a de hoy se registr&oacute; la siguiente consulta</p>
             <p><strong>Titulo: </strong>${mail.titulo}</p>
             <p><strong>Mensaje: </strong>${mail.mensaje}</p>
-            <p>Nos comunicaremos con ud. para responderle en breve.</p>
+            <p>Nos comunicaremos con ud. para responderle a la brevedad.</p>
             <p>Departamento de Compras - Proagro</p>
             `
     } else {
@@ -58,7 +58,7 @@ exports.sendEmail = async (req, res, next) => {
         from: '"Proagro contacto" <proagro@neocore.com.ar>', 
         to: mail.email,
         bcc: EMAIL.EMAIL_AUTORIZ,
-        bcc: 'it@proagrolab.com.ar',
+        bcc: 'technical_support@proagrolab.com.ar',
         subject: mailTitu,
         html: contentHTML,
         attachments: [{
