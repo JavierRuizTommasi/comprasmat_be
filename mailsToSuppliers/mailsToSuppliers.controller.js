@@ -157,7 +157,7 @@ exports.sendMailsToSuppliers = async (req, result) => {
                             <h1 style="font:24px Helvetica,Arial,sans-serif; font-weight: bold; line-height:1.5;">Notificaci&oacuten de Nueva Solicitud de Cotizaci&oacuten</h1>
                         </div>
                         <br>
-                        <p style="font:14px Helvetica,Arial,sans-serif;">Estimado Proveedor <strong>${newUser.nombre}</strong> (Empresa: <strong>${newUser.usuario})</strong>.</p>
+                        <p style="font:14px Helvetica,Arial,sans-serif;">Estimado Proveedor <strong>${mail.provenom}</strong> (Empresa: <strong>${mail.usuario})</strong>.</p>
                         <p>En el d&iacute;a de hoy se gener&oacute; la solicitud de Cotizaci&oacute;n <strong># ${mail.licitacion}</strong> que finalizar&aacute; el pr&oacute;ximo <strong>${moment(mail.finaliza).format("DD/MM/YYYY")}</strong></p>
                         <ul>
                             <li>Insumo: <strong>${mail.descrip}</strong></li>
@@ -177,7 +177,7 @@ exports.sendMailsToSuppliers = async (req, result) => {
                             <h1 style="font:24px Helvetica,Arial,sans-serif; font-weight: bold; line-height:1.5;">Notification of New Request for Quotation</h1>
                         </div>
                         <br>
-                        <p style="font:14px Helvetica,Arial,sans-serif;">Dear supplier <strong>${newUser.nombre}</strong> (Brand: <strong>${newUser.usuario})</strong>.</p>
+                        <p style="font:14px Helvetica,Arial,sans-serif;">Dear supplier <strong>${mail.provenom}</strong> (Brand: <strong>${mail.usuario})</strong>.</p>
                         <p>Today it was generated the Request for quotation <strong># ${mail.licitacion}</strong> that will finalize the next <strong>${moment(mail.finaliza).format("MM/DD/YYYY")}</strong></p>
                         <ul>
                             <li>Supply: <strong>${mail.descrip}</strong></li>
@@ -201,7 +201,7 @@ exports.sendMailsToSuppliers = async (req, result) => {
                             <h1 style="font:24px Helvetica,Arial,sans-serif; font-weight: bold; line-height:1.5;">Aviso de Solicitud de Cotizaci&oacute;n por Finalizar</h1>
                         </div>
                         <br>
-                        <p style="font:14px Helvetica,Arial,sans-serif;">Estimado Proveedor <strong>${newUser.nombre}</strong> (Empresa: <strong>${newUser.usuario})</strong>.</p>
+                        <p style="font:14px Helvetica,Arial,sans-serif;">Estimado Proveedor <strong>${mail.provenom}</strong> (Empresa: <strong>${mail.usuario})</strong>.</p>
                         <p>La solicitud de Cotizaci&oacute;n <strong># ${mail.licitacion}</strong> finalizar&aacute; el pr&oacute;ximo <strong>${moment(mail.finaliza).format("DD/MM/YYYY")}</strong></p>
                         <ul>
                             <li>Insumo: <strong>${mail.descrip}</strong></li>
@@ -222,7 +222,7 @@ exports.sendMailsToSuppliers = async (req, result) => {
                             <h1 style="font:24px Helvetica,Arial,sans-serif; font-weight: bold; line-height:1.5;">Warning of Request for Quotation to Finalize</h1>
                         </div>
                         <br>
-                        <p style="font:14px Helvetica,Arial,sans-serif;">Dear supplier <strong>${newUser.nombre}</strong> (Brand: <strong>${newUser.usuario})</strong>.</p>
+                        <p style="font:14px Helvetica,Arial,sans-serif;">Dear supplier <strong>${mail.provenom}</strong> (Brand: <strong>${mail.usuario})</strong>.</p>
                         <p>The Request for quotation <strong># ${mail.licitacion}</strong> will finalize the next <strong>${moment(mail.finaliza).format("MM/DD/YYYY")}</strong></p>
                         <ul>
                             <li>Supply: <strong>${mail.descrip}</strong></li>
@@ -240,6 +240,8 @@ exports.sendMailsToSuppliers = async (req, result) => {
                     break
             }
         
+            // console.log(contentHTML)
+
             const transporter = nodemailer.createTransport({
                 host: EMAIL.HOST,
                 port: EMAIL.PORT,
@@ -253,6 +255,8 @@ exports.sendMailsToSuppliers = async (req, result) => {
                 }
             })
         
+            // console.log('transporter', transporter)
+
             switch (emailToSend) {
                 case 'send1st': 
                     if (mail.language == 'es') {
