@@ -131,12 +131,13 @@ exports.sendMailsToSuppliers = async (req, result) => {
 
     const saveMail = (query) => {
         return new Promise ((resolve, reject) => {
-        // console.log(query)
-        MailsToSuppliers.create(query, (err, mail) => {
-            if (err) reject({ error: err})
-            resolve(mail)
+            console.log(query)
+            MailsToSuppliers.create(query, (err, mail) => {
+                if (err) reject({ error: err})
+                resolve(mail)
+            })
         })
-    })}
+    }
 
     const mandaMail = (mail) => {
         return new Promise ((resolve, reject) => {
@@ -307,11 +308,12 @@ exports.sendMailsToSuppliers = async (req, result) => {
     }
 
     const updtTender = (query, updt) => {
+        // console.log('query', query)
         return new Promise ((resolve, reject) => {
-        // console.log(query)
-        Tenders.update(query, updt, (err, res) => {
-            if (err) reject({ error: err})
-            resolve(res)
+            // console.log('updt', updt)
+            Tenders.update(query, updt, (err, res) => {
+                if (err) reject({ error: err})
+                resolve(res)
         })
     })}
 
@@ -399,7 +401,7 @@ exports.sendMailsToSuppliers = async (req, result) => {
                             let sent = await mandaMail(mail)
                             console.log('Sent')
 
-                            let saved = await saveMail(mail)
+                            // let saved = await saveMail(mail)
                             console.log('Saved')
                         }
 
@@ -412,6 +414,9 @@ exports.sendMailsToSuppliers = async (req, result) => {
                     // return message
                     result.json(message)
                 }
+
+                // console.log('emailToSend', emailToSend)
+                // console.log('tender', tender)
 
                 switch (emailToSend) {
                     case 'send1st': 
