@@ -15,7 +15,7 @@ var moment = require('moment')
 
 exports.createMailsToSupplier = (req, res, next) => {
     const newMail = req.body
-
+    console.log(newMail)
     MailsToSuppliers.create(newMail, (err, mail) => {
         if (err && err.code === 11000) return res.send({ message: 'Mail already exists' })
         if (err) res.json({errr: err})
@@ -128,16 +128,6 @@ exports.sendMailsToSuppliers = async (req, result) => {
             resolve(myUsers)
         })      
     })}
-
-    const saveMail = (query) => {
-        return new Promise ((resolve, reject) => {
-            console.log(query)
-            MailsToSuppliers.create(query, (err, mail) => {
-                if (err) reject({ error: err})
-                resolve(mail)
-            })
-        })
-    }
 
     const mandaMail = (mail) => {
         return new Promise ((resolve, reject) => {
@@ -306,6 +296,15 @@ exports.sendMailsToSuppliers = async (req, result) => {
             })
         })
     }
+    const saveMail = (query) => {
+        return new Promise ((resolve, reject) => {
+            // console.log('SaveMail', query)
+            MailsToSuppliers.create(query, (err, mail) => {
+                if (err) reject({ error: err})
+                resolve(mail)
+            })
+        })
+    }
 
     const updtTender = (query, updt) => {
         // console.log('query', query)
@@ -401,7 +400,7 @@ exports.sendMailsToSuppliers = async (req, result) => {
                             let sent = await mandaMail(mail)
                             console.log('Sent')
 
-                            // let saved = await saveMail(mail)
+                            let saved = await saveMail(mail)
                             console.log('Saved')
                         }
 

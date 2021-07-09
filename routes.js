@@ -154,7 +154,7 @@ module.exports = (router) => {
     router.delete('/settingScorings/:id', SettingScorings.deleteSettingScoring)
 
     router.get('/mailsToSuppliers', MailsToSuppliers.getMailsToSuppliers)
-    router.post('/mailsToSuppliers', MailsToSuppliers.createMailsToSuppliers)
+    router.post('/mailsToSuppliers', MailsToSuppliers.createMailsToSupplier)
     router.get('/sendMailsToSuppliers', MailsToSuppliers.sendMailsToSuppliers)
     // router.get('/redirTender/:token/:tender/:prod', MailsToSuppliers.redirTender)
     router.get('/getMailsToSuppliers', MailsToSuppliers.getMailsToSuppliers)
