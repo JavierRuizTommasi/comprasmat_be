@@ -42,6 +42,10 @@ const mailsToSuppliersSchema = new Schema({
         type: String,
         required: true
     },
+    from: {type: String},
+    to: {type: String},
+    bcc: {type: String},
+    subject: {type: String}
 },
 {
     timestamps: true

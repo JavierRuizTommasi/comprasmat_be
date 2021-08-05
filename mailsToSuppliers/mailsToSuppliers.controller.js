@@ -292,6 +292,32 @@ exports.sendMailsToSuppliers = async (req, result) => {
 
             transporter.sendMail(mailOptions, function(err, info){
                 if (err) reject({ error: err})
+
+                let emailSent = {
+                    licitacion: mail.licitacion,
+                    producto: mail.producto,
+                    descrip: mail.descrip,
+                    cantidad: mail.cantidad,
+                    unidad: mail.unidad,
+                    finaliza: mail.finaliza,
+                    fecha: mail.fecha,
+                    userId: mail.userId,
+                    usuario: mail.usuario,
+                    proveedor: mail.proveedor,
+                    provenom: mail.provenom,
+                    email: mail.email,
+                    language: mail.language,
+                    from: mailOptions.from,
+                    to: mailOptions.to,
+                    bcc: mailOptions.bcc,
+                    subject: mailOptions.subject
+                }
+
+                console.log(emailSent)
+
+                let saved = saveMail(emailSent)
+                console.log('Saved')
+                
                 resolve(info)
             })
         })
@@ -400,8 +426,8 @@ exports.sendMailsToSuppliers = async (req, result) => {
                             let sent = await mandaMail(mail)
                             console.log('Sent')
 
-                            let saved = await saveMail(mail)
-                            console.log('Saved')
+                            // let saved = await saveMail(mail)
+                            // console.log('Saved')
                         }
 
                     }

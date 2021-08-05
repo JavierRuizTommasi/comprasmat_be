@@ -9,12 +9,12 @@ const logger = require('express-log-mongo');
 var morgan = require('morgan')
 
 // Init mongoose
-const mongoose = require('mongoose')
-mongoose.set('useUnifiedTopology', true)
-mongoose.set('useCreateIndex', true)
+// const mongoose = require('mongoose')
+// mongoose.set('useUnifiedTopology', true)
+// mongoose.set('useCreateIndex', true)
 
-const connection = mongoose.connection
-connection.on('error', console.log)
+// const connection = mongoose.connection
+// connection.on('error', console.log)
 
 // Init db
 db()
@@ -34,11 +34,12 @@ app.use(bodyParserURLEncoded)
 
 // Init Logger
 // console.log(properties.DB)
-app.use(logger(':date :method :url :status :remote-addr :response-time :http-version :remote-user :res[content-length] :referrer :user-agent', {
-    url: properties.DB,
-    db: properties.DBLogs,
-    collection: 'logs'
-}));
+app.use(logger(':date :method :url :status :remote-addr :response-time :http-version :remote-user :res[content-length] :referrer :user-agent', 
+    {
+        url: properties.DB,
+        db: properties.DBLogs,
+        collection: 'logs'
+    }))
  
 // GridFs
 const methodOverride = require('method-override')

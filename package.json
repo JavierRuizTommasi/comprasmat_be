@@ -1,11 +1,12 @@
 {
   "name": "proagrocompras",
   "version": "1.0.0",
-  "description": "",
+  "description": "API Proagro Suppliers Portal",
   "main": "server.js",
   "engines": {
     "node": "14.15.0"
   },
+  "private": true,
   "scripts": {
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",

@@ -14,7 +14,7 @@ myProductsSchema.statics = {
     },
     update: function (query, updateData, ub) {
         // this.update(query, { $set: updateData }, { upsert: true }, ub)
-        this.findOneAndUpdate(query, { $set: updateData }, { new: true }, ub)
+        this.findOneAndUpdate(query, { $set: updateData }, { new: true, useFindAndModify: false }, ub)
     },
     delete: function(query, ub) {
         this.findOneAndDelete(query, ub)

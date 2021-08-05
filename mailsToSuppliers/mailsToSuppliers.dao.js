@@ -13,7 +13,7 @@ mailsToSuppliersSchema.statics = {
         this.find(query, ub)
     },
     update: function (query, updateData, ub) {
-        this.findOneAndUpdate(query, { $set: updateData }, { new: true }, ub)
+        this.findOneAndUpdate(query, { $set: updateData }, { new: true, useFindAndModify: false }, ub)
     },
     delete: function(query, ub) {
         this.findOneAndDelete(query, ub)
