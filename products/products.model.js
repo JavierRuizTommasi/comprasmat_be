@@ -60,6 +60,9 @@ const productsSchema = new Schema({
     },
     rankcontrib: {
         type: Number
+    },
+    link: {
+        type: String
     }
 },
 {
