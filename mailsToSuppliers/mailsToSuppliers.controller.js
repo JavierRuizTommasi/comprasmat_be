@@ -1,6 +1,7 @@
 const MailsToSuppliers = require('./mailsToSuppliers.dao')
 const Tenders = require('../tenders/tenders.dao')
 const myProducts = require('../myproducts/myproducts.dao')
+const Products = require('../products/products.dao')
 const User = require('../users/user.dao')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
@@ -129,6 +130,15 @@ exports.sendMailsToSuppliers = async (req, result) => {
         })      
     })}
 
+    const myProd = (query) => {
+        return new Promise ((resolve, reject) => {
+        // console.log(query)
+        Products.get(query, (err, prod) => {
+            if (err) reject({ error: err})
+            resolve(prod)
+        })      
+    })}
+
     const mandaMail = (mail) => {
         return new Promise ((resolve, reject) => {
             // console.log(mail)
@@ -153,6 +163,15 @@ exports.sendMailsToSuppliers = async (req, result) => {
                         <ul>
                             <li>Insumo: <strong>${mail.descrip}</strong></li>
                             <li>Cantidad: <strong>${mail.cantidad} ${mail.unidad}</strong></li>
+                        `
+ 
+                        if (mail.link) {
+                            contentHTML = contentHTML + `
+                                <li>Muestra: <a href="${mail.link}" target="_blank">Link</a></li>
+                            `
+                        }
+
+                        contentHTML = contentHTML + `
                         </ul>
                         <p>Si le interesa acercarnos su oferta para ser tenido en cuenta en el an&aacute;lisis de compra del insumo, por favor haga click 
                             en el siguiente link para acceder a nuestra web y complete su cotizaci&oacute;n antes de la fecha de finalizaci&oacute;n.
@@ -173,6 +192,15 @@ exports.sendMailsToSuppliers = async (req, result) => {
                         <ul>
                             <li>Supply: <strong>${mail.descrip}</strong></li>
                             <li>Quantity: <strong>${mail.cantidad} ${mail.unidad} </strong></li>
+                        `
+
+                        if (mail.link) {
+                            contentHTML = contentHTML + `
+                                <li>Sample: <a href="${mail.link}" target="_blank">Link</a></li>
+                            `
+                        }
+
+                        contentHTML = contentHTML + `
                         </ul>
                         <p>If you are interest to send us your offer in order to be considered during our purchase process, please click on the below link 
                         to be redirected to our web site and complete your quotation. 
@@ -197,6 +225,15 @@ exports.sendMailsToSuppliers = async (req, result) => {
                         <ul>
                             <li>Insumo: <strong>${mail.descrip}</strong></li>
                             <li>Cantidad: <strong>${mail.cantidad} ${mail.unidad}</strong></li>
+                        `
+                    
+                        if (mail.link) {
+                            contentHTML = contentHTML + `
+                                <li>Muestra: <a href="${mail.link}" target="_blank">Link</a></li>
+                            `
+                        }
+
+                        contentHTML = contentHTML + `
                         </ul>
                         <p>Si le interesa acercarnos su oferta para ser tenido en cuenta en el an&aacute;lisis de compra del insumo, por favor haga click en el siguiente link para acceder a nuestra web 
                         y complete su cotizaci&oacute;n antes de la fecha de finalizaci&oacute;n.
@@ -218,6 +255,15 @@ exports.sendMailsToSuppliers = async (req, result) => {
                         <ul>
                             <li>Supply: <strong>${mail.descrip}</strong></li>
                             <li>Quantity: <strong>${mail.cantidad} ${mail.unidad} </strong></li>
+                        `
+
+                        if (mail.link) {
+                            contentHTML = contentHTML + `
+                                <li>Sample: <a href="${mail.link}" target="_blank">Link</a></li>
+                            `
+                        }
+
+                        contentHTML = contentHTML + `
                         </ul>
                         <p>If you are interest to send us your offer in order to be considered during our purchase process, please click on the below link 
                         to be redirected to our web site and complete your quotation before the due date.
@@ -378,6 +424,9 @@ exports.sendMailsToSuppliers = async (req, result) => {
                 let tender = tenders[numTender] 
                 if (tender) {
 
+                    let prod = await myProd({ codigo: tender.producto })
+                    // console.log('Prod:', prod)
+
                     let provs = await myProds({ codigo: tender.producto })
                     // console.log(provs)
 
@@ -404,8 +453,11 @@ exports.sendMailsToSuppliers = async (req, result) => {
                                 proveedor: users[user].proveedor,
                                 provenom: users[user].nombre,
                                 email: users[user].email,
-                                language: users[user].language
+                                language: users[user].language,
+                                link : prod[0].link
                             }
+
+                            // console.log('Mail', mail)
 
                             strEmail = mail.email
                             if (users[user].email2) {

@@ -28,6 +28,7 @@ exports.getProduct = (req, res, next) => {
   
 exports.udpateProduct = (req, res, next) => {
     const product = req.body
+    // console.log(product)
 
     Products.update({ _id: req.params.id }, product, (err, product) => {
         if (err) res.json({ error: err})
