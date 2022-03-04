@@ -100,6 +100,9 @@ const offersSchema = new Schema({
     precioPesos: {
         type: Number
     },
+    cotizacion: {
+        type: Number
+    },
     desempeno: {
         type: Number
     },

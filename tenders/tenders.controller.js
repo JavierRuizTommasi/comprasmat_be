@@ -209,7 +209,7 @@ exports.updateScoring = async (req, res, next) => {
     const updtOffer = (query, offer) => {
         return new Promise ((resolve, reject) => {
         // console.log(query)
-        Offers.update(query, offer, (err, offer) => {
+        Offers.updateOne(query, offer, (err, offer) => {
             if (err) reject({ error: err})
             // console.log({product})
             // res.json({Tender: tender})
@@ -264,8 +264,19 @@ exports.updateScoring = async (req, res, next) => {
         // Ciclo entre las Ofetas
         for(var offer in tender.tender[0].offer) {
             // Tomo el Precio de la Ofeta
-            const precioOff = tender.tender[0].offer[offer].precio
+            const precioPesosOff = tender.tender[0].offer[offer].precioPesos
+            // console.log('PrecioPesos', precioPesosOff)
+
+            let precioOff = tender.tender[0].offer[offer].precio
             // console.log('Precio', precioOff)
+
+            const cotizaOff = tender.tender[0].offer[offer].cotizacion
+            // console.log('Cotizacion', cotizaOff)
+
+            if (precioOff == 0 && cotizaOff !== 0) {
+                precioOff = (precioPesosOff / cotizaOff).toFixed(5)
+                // console.log('Nuevo Precio', precioOff)
+            }
 
             // Tomo la Cantidad de la Ofeta
             const cantiOff = tender.tender[0].offer[offer].cantidad
@@ -365,7 +376,7 @@ exports.updateScoring = async (req, res, next) => {
             }
 
             i++
-            console.log(newOffer)
+            // console.log(newOffer)
             let defOffer = await updtOffer({ _id: tender.tender[0].offer[offer]._id }, newOffer)
             // console.log(defOffer.offer)
 

@@ -46,7 +46,7 @@ exports.getOffer = (req, res, next) => {
 exports.udpateOffers = (req, res, next) => {
     const offer = req.body
     
-    Offers.update({ _id: req.params.id }, offer, async (err, offer) => {
+    Offers.updateOne({ _id: req.params.id }, offer, async (err, offer) => {
         if (err) res.json({ error: err})
 
         if (offer.licitacion_id) {
@@ -86,7 +86,7 @@ exports.udpateOfferStates = (req, res, next) => {
                 offers.forEach(elem => { 
 
                     if (elem._id != offer_id) {
-                        Offers.update({ _id: elem._id }, { estado: 2 }, async (err, offer2) => {
+                        Offers.updateOne({ _id: elem._id }, { estado: 2 }, async (err, offer2) => {
                             if (err) res.json({ error: err})
                             console.log(offer2._id, offer2.estado)
                         })
