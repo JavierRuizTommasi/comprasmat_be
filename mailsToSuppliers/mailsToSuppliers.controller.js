@@ -1,5 +1,6 @@
 const MailsToSuppliers = require('./mailsToSuppliers.dao')
 const Tenders = require('../tenders/tenders.dao')
+const Offers = require('../offers/offers.dao')
 const myProducts = require('../myproducts/myproducts.dao')
 const Products = require('../products/products.dao')
 const User = require('../users/user.dao')
@@ -98,7 +99,9 @@ exports.createMailsToSuppliers = (req, res, next) => {
 
 exports.sendMailsToSuppliers = async (req, result) => {
     const emailToSend = req.body.email
-    console.log(emailToSend)
+    const emailTender = req.body.tender
+    const emailOffer  = req.body.offer
+    // console.log(req.body)
 
     const logFecha = moment(new Date()).format('YYYY-MM-DD, h:mm:ss a')
     // console.log('Fecha', logFecha)
@@ -139,6 +142,15 @@ exports.sendMailsToSuppliers = async (req, result) => {
         })      
     })}
 
+    const myOffer = (query) => {
+        return new Promise ((resolve, reject) => {
+        console.log(query)
+        Offers.get(query, (err, myOffer) => {
+            if (err) reject({ error: err})
+            resolve(myOffer)
+        })      
+    })}
+
     const mandaMail = (mail) => {
         return new Promise ((resolve, reject) => {
             // console.log(mail)
@@ -150,6 +162,69 @@ exports.sendMailsToSuppliers = async (req, result) => {
             // console.log('EmailToSend', emailToSend)
 
             switch (emailToSend) {
+                case 'offer': 
+                    if (mail.language == 'es') {
+                        contentHTML = `
+                        <div style="display: flex;">
+                            <img style="height: 57px; width: 95px; margin-right: 10px;" src="cid:logo"/>
+                            <h1 style="font:24px Helvetica,Arial,sans-serif; font-weight: bold; line-height:1.5;">Notificaci&oacute;n de Oferta recibida</h1>
+                        </div>
+                        <br>
+                        <p style="font:14px Helvetica,Arial,sans-serif;">Estimado Proveedor <strong>${mail.provenom}</strong> (Empresa: <strong>${mail.usuario})</strong>.</p>
+                        <p>En el d&iacute;a de hoy se registr&oacute; su offerta de Cotizaci&oacute;n para la Solicitud <strong># ${mail.licitacion}</strong> seg&uacute el siguiente detalle:</p>
+                        <ul>
+                            <li>Insumo: <strong>${mail.descrip}</strong></li>
+                            <li>Cantidad: <strong>${mail.cantOffer} ${mail.unidOffer}</strong></li>
+                            <li>Precio: <strong>${mail.precOffer} ${mail.moneda}</strong></li>
+                            <li>Incoterm: <strong>${mail.incoterm}</strong></li>
+                            <li>Entrega: <strong>${mail.entrega} D&iacute;as</strong></li>
+                            <li>Finaciaci&oacute;n: <strong>${mail.financiacion} D&iacute;as</strong></li>
+                        `
+
+                        if (mail.link) {
+                            contentHTML = contentHTML + `
+                                <li>Muestra: <a href="${mail.link}" target="_blank">Link</a></li>
+                            `
+                        }
+
+                        contentHTML = contentHTML + `
+                        </ul>
+                        <p>Atte.</p>
+                        <p>Departamento de Compras - Proagro</p>
+                        <p><h5 style="text-align:center">Haga click aqu&iacute; para <a href="${properties.URLAPI}/unsubscribe/${accessToken}">desuscribirse</a></h5></p>
+                        `
+                    } else {
+                        contentHTML = `
+                        <div style="display: flex;">
+                            <img style="height: 57px; width: 95px; margin-right: 10px;" src="cid:logo"/>
+                            <h1 style="font:24px Helvetica,Arial,sans-serif; font-weight: bold; line-height:1.5;">Notification of Offer received</h1>
+                        </div>
+                        <br>
+                        <p style="font:14px Helvetica,Arial,sans-serif;">Dear supplier <strong>${mail.provenom}</strong> (Brand: <strong>${mail.usuario})</strong>.</p>
+                        <p>Today it was recived your Offer related the Request for quotation <strong># ${mail.licitacion}</strong> according the below detail:</p>
+                        <ul>
+                            <li>Supply: <strong>${mail.descrip}</strong></li>
+                            <li>Quantity: <strong>${mail.cantOfeer} ${mail.unidOffer} </strong></li>
+                            <li>Price: <strong>${mail.precOffer} ${mail.moneda}</strong></li>
+                            <li>Incoterm: <strong>${mail.incoterm}</strong></li>
+                            <li>Delivery: <strong>${mail.entrega} Days</strong></li>
+                            <li>Finacial: <strong>${mail.financiacion} Days</strong></li>
+                        `
+
+                        if (mail.link) {
+                            contentHTML = contentHTML + `
+                                <li>Sample: <a href="${mail.link}" target="_blank">Link</a></li>
+                            `
+                        }
+
+                        contentHTML = contentHTML + `
+                        </ul>
+                        <p>Kind regards</p>
+                        <p>Purchase Departament - Proagro</p>
+                        <p><h5 style="text-align:center">Click here to <a href="${properties.URLAPI}/unsubscribe/${accessToken}">unsubcribe</a></h5></p>
+                        `
+                    }  
+                    break
                 case 'send1st': 
                     if (mail.language == 'es') {
                         contentHTML = `
@@ -173,8 +248,9 @@ exports.sendMailsToSuppliers = async (req, result) => {
 
                         contentHTML = contentHTML + `
                         </ul>
-                        <p>Si le interesa acercarnos su oferta para ser tenido en cuenta en el an&aacute;lisis de compra del insumo, por favor haga click 
-                            en el siguiente link para acceder a nuestra web y complete su cotizaci&oacute;n antes de la fecha de finalizaci&oacute;n.
+                        <p>Si le interesa acercarnos su oferta para ser tenido en cuenta en el an&aacute;lisis de compra del insumo, por favor haga click en el siguiente link para acceder a nuestra web 
+                            y complete su cotizaci&oacute;n antes de la fecha de finalizaci&oacute;n.
+                            Si ya realiz&oacute; su oferta, consultela para verificar su ranking.
                             <br><a href="${properties.URLHOME}/login/offer/${accessToken}/${mail.licitacion}">${properties.URLHOME}/login/offer/${accessToken}/${mail.licitacion}</a>
                         </p>
                         <p>Departamento de Compras - Proagro</p>
@@ -203,7 +279,7 @@ exports.sendMailsToSuppliers = async (req, result) => {
                         contentHTML = contentHTML + `
                         </ul>
                         <p>If you are interest to send us your offer in order to be considered during our purchase process, please click on the below link 
-                        to be redirected to our web site and complete your quotation. 
+                            to be redirected to our web site and complete your quotation. 
                             <br><a href="${properties.URLHOME}/login/offer/${accessToken}/${mail.licitacion}">${properties.URLHOME}/login/offer/${accessToken}/${mail.licitacion}</a>
                         </p>
                         <p>Purchase Departament - Proagro</p>
@@ -212,7 +288,8 @@ exports.sendMailsToSuppliers = async (req, result) => {
                             // <br><br><a href="proveedores.cf">proveedores.cf</a>
                     }
                     break
-                default:    
+                default:   
+                    // send48 && send72
                     if (mail.language == 'es') {
                         contentHTML = `
                         <div style="display: flex;">
@@ -236,8 +313,8 @@ exports.sendMailsToSuppliers = async (req, result) => {
                         contentHTML = contentHTML + `
                         </ul>
                         <p>Si le interesa acercarnos su oferta para ser tenido en cuenta en el an&aacute;lisis de compra del insumo, por favor haga click en el siguiente link para acceder a nuestra web 
-                        y complete su cotizaci&oacute;n antes de la fecha de finalizaci&oacute;n.
-                        Si ya realiz&oacute; su oferta, consultela para verificar su ranking.
+                            y complete su cotizaci&oacute;n antes de la fecha de finalizaci&oacute;n.
+                            Si ya realiz&oacute; su oferta, consultela para verificar su ranking.
                             <br><a href="${properties.URLHOME}/login/offer/${accessToken}/${mail.licitacion}">${properties.URLHOME}/login/offer/${accessToken}/${mail.licitacion}</a>
                         </p>
                         <p>Departamento de Compras - Proagro</p>
@@ -295,6 +372,15 @@ exports.sendMailsToSuppliers = async (req, result) => {
             // console.log('transporter', transporter)
 
             switch (emailToSend) {
+                case 'offer': 
+                    if (mail.language == 'es') {
+                        mailTitu = 'PROAGRO - Notificación de Oferta recibida sobre la Solicitud de Cotización ' + mail.licitacion + ' - ' + mail.descrip
+                        fromMsg = '"Proagro contacto" <proagro@neocore.com.ar>'
+                    } else {
+                        mailTitu = 'PROAGRO - Notification of Offer received on Request for Quotation ' + mail.licitacion + ' - ' + mail.descrip
+                        fromMsg = '"Proagro contact" <proagro@neocore.com.ar>'
+                    }
+                    break
                 case 'send1st': 
                     if (mail.language == 'es') {
                         mailTitu = 'PROAGRO - Notificación de Nueva Solicitud de Cotización ' + mail.licitacion + ' - ' + mail.descrip
@@ -340,6 +426,7 @@ exports.sendMailsToSuppliers = async (req, result) => {
                 if (err) reject({ error: err})
 
                 let emailSent = {
+                    type: emailToSend,
                     licitacion: mail.licitacion,
                     producto: mail.producto,
                     descrip: mail.descrip,
@@ -356,10 +443,18 @@ exports.sendMailsToSuppliers = async (req, result) => {
                     from: mailOptions.from,
                     to: mailOptions.to,
                     bcc: mailOptions.bcc,
-                    subject: mailOptions.subject
+                    subject: mailOptions.subject,
+                    link: mail.link,
+                    cantOffer: mail.cantOffer,
+                    precOffer: mail.precOffer,
+                    moneda: mail.moneda,
+                    unidOffer: mail.unidOffer,
+                    incoterm: mail.incoterm,
+                    entrega: mail.entrega,
+                    financiacion: mail.financiacion
                 }
 
-                console.log(emailSent)
+                // console.log(emailSent)
 
                 let saved = saveMail(emailSent)
                 console.log('Saved')
@@ -382,7 +477,7 @@ exports.sendMailsToSuppliers = async (req, result) => {
         // console.log('query', query)
         return new Promise ((resolve, reject) => {
             // console.log('updt', updt)
-            Tenders.update(query, updt, (err, res) => {
+            Tenders.updateOne(query, updt, (err, res) => {
                 if (err) reject({ error: err})
                 resolve(res)
         })
@@ -390,7 +485,14 @@ exports.sendMailsToSuppliers = async (req, result) => {
 
     try {
         let tenderFilter = {}
+        let offerFilter = {}
+
         switch (emailToSend) {
+            case 'offer': 
+                offerFilter = { _id: emailOffer }
+                tenderFilter = { _id: emailTender }
+                console.log('offer', offerFilter) 
+                break
             case 'send1st': 
                 tenderFilter = { estado: 0 }
                 console.log('send1s', tenderFilter) 
@@ -416,7 +518,10 @@ exports.sendMailsToSuppliers = async (req, result) => {
         }
 
         let tenders = await myTenders(tenderFilter)
-        console.log('Tenders: ',tenders.length)
+        // console.log('Tenders: ', tenders.length)
+
+        let offers = await myOffer(offerFilter)
+        // console.log('Offers: ', offers)
 
         if (tenders.length != 0 ) {
             for(var numTender in tenders) {
@@ -426,9 +531,18 @@ exports.sendMailsToSuppliers = async (req, result) => {
 
                     let prod = await myProd({ codigo: tender.producto })
                     // console.log('Prod:', prod)
+                    // console.log('Prod:', tender.producto)
 
-                    let provs = await myProds({ codigo: tender.producto })
-                    // console.log(provs)
+                    // console.log('emailToSend:', emailToSend)
+                    if (emailToSend == 'offer') {
+                        // Solo el proveedor de la oferta
+                        // console.log(offers[0].usuario)
+                        provs = [{ usuario: offers[0].usuario }]
+                    } else {
+                        // Todos los proveedores que proveen el producto
+                        provs = await myProds({ codigo: tender.producto })
+                    }
+                    // console.log('Provs', provs)
 
                     for(var prov in provs) {
                         // console.log(provs[prov])
@@ -454,7 +568,14 @@ exports.sendMailsToSuppliers = async (req, result) => {
                                 provenom: users[user].nombre,
                                 email: users[user].email,
                                 language: users[user].language,
-                                link : prod[0].link
+                                link: prod[0].link,
+                                cantOffer: offers[0].cantidad,
+                                precOffer: offers[0].precio ? offers[0].precio : offers[0].precioPesos,
+                                moneda: offers[0].precio ? 'U$S' : 'Pesos',
+                                unidOffer: offers[0].unidad,
+                                incoterm: offers[0].incoterm,
+                                entrega: offers[0].entrega,
+                                financiacion: offers[0].financiacion
                             }
 
                             // console.log('Mail', mail)

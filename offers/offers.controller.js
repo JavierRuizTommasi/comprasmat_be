@@ -1,6 +1,19 @@
 const Offers = require('./offers.dao')
 const Tenders = require('../tenders/tenders.dao')
+const properties = require('../config/properties')
 
+const MailsToSuppliers = require('../mailsToSuppliers/mailsToSuppliers.controller')
+
+var http = require('http');
+var request = require('request');
+
+// function sendMail(req, res, next) {
+//     req.url = properties.URLAPI+"sendMailsToSuppliers"
+//     req.method = 'GET'
+//     console.log(req)
+//     return app._router.handle(req, res, next)
+// }
+  
 exports.createOffers = (req, res, next) => {
     const newOffer = req.body
     console.log(newOffer)
@@ -52,16 +65,35 @@ exports.udpateOffers = (req, res, next) => {
         if (offer.licitacion_id) {
             // console.log(offer.licitacion, offer._id)
 
-            Tenders.assignOffer(
+            await Tenders.assignOffer(
                 { _id: offer.licitacion_id } ,
                 { $addToSet: { offer: offer._id } },
                 (err, tender) => {
                     if (err) res.json({ error: err})
                 }
             )
+
+            await request({
+                url: properties.URLAPI+"sendMailsToSuppliers",
+                method: "GET",
+                timeout: 10000,
+                followRedirect: true,
+                maxRedirects: 10,
+                form: {email: 'offer', offer: offer.id, tender: offer.licitacion_id}
+            },function(error, response, body){
+                if(error){
+                    console.log('error: ' + error);
+                }else{
+                    console.log('sucess!' + Date());
+                }
+            })
+
         }
 
+        // app.get({email: "offer", offer: offer._id, tender: offer.licitacion_id}, sendMail)
+
         res.json({message: 'Offer updated successfully'})        
+
     })
 
 }

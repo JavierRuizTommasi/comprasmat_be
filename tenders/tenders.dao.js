@@ -15,7 +15,7 @@ tenderSchema.statics = {
         this.find(query, ub)
         .populate("offer")
     },
-    update: function (query, updateData, ub) {
+    updateOne: function (query, updateData, ub) {
         this.findOneAndUpdate(query, { $set: updateData }, { new: true, useFindAndModify: false }, ub)
     },
     delete: function(query, ub) {

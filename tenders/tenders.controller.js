@@ -54,7 +54,7 @@ exports.getTendersActives = (req, res, next) => {
 exports.udpateTenders = (req, res, next) => {
     const tender = req.body
     
-    Tenders.update({ _id: req.params.id }, tender, (err, tender) => {
+    Tenders.updateOne({ _id: req.params.id }, tender, (err, tender) => {
         if (err) res.json({ error: err})
         res.json({message: 'Tender updated successfully'})        
     })
