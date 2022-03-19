@@ -47,6 +47,7 @@ const mailsToSuppliersSchema = new Schema({
     bcc: {type: String},
     subject: {type: String},
     link: {type: String},
+    tipo: {type: String},
     cantOffer: {type: Number},
     precOffer: {type: Number},
     moneda: {type: String},

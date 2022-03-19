@@ -8,6 +8,7 @@ mailsToSuppliersSchema.statics = {
     },
     get: function (query, ub) {
         this.find(query, ub)
+        .sort({updatedAt:-1})
     },
     getByID: function (query, ub) {
         this.find(query, ub)

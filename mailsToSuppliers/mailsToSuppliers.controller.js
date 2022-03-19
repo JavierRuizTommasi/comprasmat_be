@@ -445,6 +445,7 @@ exports.sendMailsToSuppliers = async (req, result) => {
                     bcc: mailOptions.bcc,
                     subject: mailOptions.subject,
                     link: mail.link,
+                    tipo: emailToSend, 
                     cantOffer: mail.cantOffer,
                     precOffer: mail.precOffer,
                     moneda: mail.moneda,
@@ -582,13 +583,13 @@ exports.sendMailsToSuppliers = async (req, result) => {
 
                             strEmail = mail.email
                             if (users[user].email2) {
-                                strEmail = strEmail + ';' + users[user].email2
+                                strEmail = strEmail + '; ' + users[user].email2
                             }
                             if (users[user].email3) {
-                                strEmail = strEmail + ';' + users[user].email3
+                                strEmail = strEmail + '; ' + users[user].email3
                             }
                             if (users[user].email4) {
-                                strEmail = strEmail + ';' + users[user].email4
+                                strEmail = strEmail + '; ' + users[user].email4
                             }
 
                             console.log(strEmail)
@@ -599,8 +600,6 @@ exports.sendMailsToSuppliers = async (req, result) => {
                             let sent = await mandaMail(mail)
                             console.log('Sent')
 
-                            // let saved = await saveMail(mail)
-                            // console.log('Saved')
                         }
 
                     }
