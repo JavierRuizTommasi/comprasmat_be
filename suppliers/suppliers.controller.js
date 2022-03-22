@@ -44,7 +44,7 @@ exports.getMySupplier = (req, res, next) => {
 exports.udpateSupplier = (req, res, next) => {
     const supplier = req.body
 
-    Suppliers.update({ _id: req.params.id }, supplier, (err, supplier) => {
+    Suppliers.updateOne({ _id: req.params.id }, supplier, (err, supplier) => {
         if (err) res.json({ error: err})
         res.json({message: 'Supplier updated successfully'})        
     })

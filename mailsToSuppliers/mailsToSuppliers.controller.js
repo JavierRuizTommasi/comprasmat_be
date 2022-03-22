@@ -677,7 +677,7 @@ exports.getmailsToSupplier = (req, res, next) => {
 exports.udpateMailsToSupplier = (req, res, next) => {
     const mail = req.body
 
-    MailsToSuppliers.update({ _id: req.params.id }, mail, (err, mail) => {
+    MailsToSuppliers.updateOne({ _id: req.params.id }, mail, (err, mail) => {
         if (err) res.json({ error: err})
         res.json({message: 'Mail updated successfully'})        
     })

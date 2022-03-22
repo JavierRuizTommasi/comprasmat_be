@@ -37,7 +37,7 @@ exports.getMyProduct = (req, res, next) => {
 exports.udpateMyProduct = (req, res, next) => {
     const myproduct = req.body
 
-    myProducts.update({ _id: req.params.id }, myproduct, (err, myproduct) => {
+    myProducts.updateOne({ _id: req.params.id }, myproduct, (err, myproduct) => {
         if (err) res.json({ error: err})
         res.json({message: 'myProduct updated successfully'})        
     })

@@ -41,7 +41,7 @@ exports.udpateSettingScoring = (req, res, next) => {
         activo: req.body.activo
     }
 
-    SettingScorings.update({ _id: req.params.id }, SettingScoring, (err, settingScoring) => {
+    SettingScorings.updateOne({ _id: req.params.id }, SettingScoring, (err, settingScoring) => {
         if (err) res.json({ error: err})
         res.json({message: 'SettingScoring updated successfully'})        
     })

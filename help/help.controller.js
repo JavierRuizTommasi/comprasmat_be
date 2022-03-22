@@ -33,7 +33,7 @@ exports.getHelp = (req, res, next) => {
 exports.udpateHelp = (req, res, next) => {
     const Help = req.body
 
-    Helps.update({ _id: req.params.id }, Help, (err, help) => {
+    Helps.updateOne({ _id: req.params.id }, Help, (err, help) => {
         if (err) res.json({ error: err})
         res.json({message: 'Help updated successfully'})        
     })

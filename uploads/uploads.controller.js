@@ -153,7 +153,7 @@ exports.getUpload = (req, res, next) => {
 exports.udpateUpload = (req, res, next) => {
     const Upload = req.body
 
-    Upload.update({ _id: req.params.id }, Upload, (err, upload) => {
+    Upload.updateOne({ _id: req.params.id }, Upload, (err, upload) => {
         if (err) res.json({ error: err})
         res.json({message: 'Upload updated successfully'})        
     })

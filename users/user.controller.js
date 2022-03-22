@@ -241,7 +241,7 @@ exports.autenticateUser = (req, res, next) => {
                     id: user.id,
                     activo: true
                   }
-                  User.update({ _id: dataUser.id }, dataUser, (err, user) => {
+                  User.updateOne({ _id: dataUser.id }, dataUser, (err, user) => {
                     if (err) res.json({ error: err})
                       // console.log('dataUser', dataUser)
                       // console.log('user',user)
@@ -353,7 +353,7 @@ exports.udpatePass = (req, res, next) => {
           id: userData.id,
           pass: bcrypt.hashSync(userData.newpass)
         }
-        User.update({ _id: dataUser.id }, dataUser, (err, user) => {
+        User.updateOne({ _id: dataUser.id }, dataUser, (err, user) => {
           if (err) res.json({ error: err})
           // console.log(dataUser)
           res.send({ dataUser });
@@ -527,7 +527,7 @@ exports.udpateUser = (req, res, next) => {
     }
     // console.log(user)
 
-    User.update({ _id: req.params.id }, user, (err, user) => {
+    User.updateOne({ _id: req.params.id }, user, (err, user) => {
         if (err) res.json({ error: err})
         res.json({message: 'User updated successfully'})        
     })
@@ -539,7 +539,7 @@ exports.udpateLang = (req, res, next) => {
         language: req.body.language
     }
 
-    User.update({ _id: req.params.id }, lang, (err, lang) => {
+    User.updateOne({ _id: req.params.id }, lang, (err, lang) => {
         if (err) res.json({ error: err})
         res.json({message: 'Language updated successfully'})        
     })
@@ -559,7 +559,7 @@ exports.logoutUser = (req, res, next) => {
 exports.unsubscribe = (req, res, next) => {
     let id = req.decoded.id
     
-    User.update({ _id: id }, {activo: false}, (err, user) => {
+    User.updateOne({ _id: id }, {activo: false}, (err, user) => {
         if (err) res.json({ error: err})
         console.log('Unsubscribe Ok')
         // res.json({message: 'User unsubscribe successfully'})

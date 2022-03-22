@@ -70,7 +70,7 @@ exports.udpateSamples = (req, res, next) => {
         detalle: req.body.detalle
     }
     
-    Samples.update({ _id: req.params.id }, Sample, (err, sample) => {
+    Samples.updateOne({ _id: req.params.id }, Sample, (err, sample) => {
         if (err) res.json({ error: err})
         res.json({message: 'Sample updated successfully'})        
     })
