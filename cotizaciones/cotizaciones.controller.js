@@ -12,12 +12,12 @@ exports.getDolar = async (req, res, next) => {
         const dataDolar = await axios.get("https://www.dolarsi.com/api/dolarSiInfo.xml")
         const json = convert.xml2json(dataDolar.data, {compact: true, spaces: 4});
         const data = JSON.parse(json);
-        //console.log(data)
+        // console.log(data)
 
         const valores = {
             //fecha: this.util.getDateTime(),
-            compra: formatNumber(data.cotiza.Dolar.casa344.compra._text),
-            venta: formatNumber(data.cotiza.Dolar.casa344.venta._text)
+            compra: formatNumber(data.cotiza.Capital_Federal.casa6.compra._text),
+            venta: formatNumber(data.cotiza.Capital_Federal.casa6.venta._text)
         }
 
         res.json(valores)
