@@ -16,7 +16,8 @@ const Cotizaciones = require('./cotizaciones/cotizaciones.controller')
 const Helps = require('./help/help.controller')
 
 // GridFs
-const dbURL = require('./config/properties').DB
+const properties = require('./config/properties')
+const dbURL = properties.DB
 const uuid = require('uuid').v4
 const path = require('path')
 const multer = require('multer')
@@ -82,6 +83,14 @@ const rutasProtegidas = (req, res, next) => {
 }
 
 module.exports = (router) => {
+    // Expose available models to clients
+    router.get('/models', (req, res) => {
+        res.json({
+            availableModels: properties.AVAILABLE_MODELS || [],
+            claudeHaiku45Enabled: !!properties.CLAUDE_HAIKU_4_5_ENABLED
+        })
+    })
+
     router.post('/register', Users.createUser)
     router.post('/login', Users.loginUser)
     router.get('/users', Users.getUsers)

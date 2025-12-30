@@ -1,0 +1,13 @@
+@startuml ColaboracionSecuenceWelcomeUsuario
+hide footbox
+
+actor "Usuario" as (0)
+actor "Sistema" as (1)
+actor "Base de Datos" as (2)
+
+1 --> 2: Solicita obtener perfil del usuario
+2 --> 1: Devuelve perfil del usuario
+1 --> 1: General el mail \nde Bienvenida con \nel link token pa...
+1 --> 0: Envía mail de \nBienvenida al usuario
+
+@enduml

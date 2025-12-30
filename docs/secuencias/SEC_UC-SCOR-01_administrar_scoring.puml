@@ -1,0 +1,13 @@
+@startuml SecuenceAdministrarScorings
+hide footbox
+
+actor Usuario
+participant Sistema
+Usuario->Sistema: Solicita Aminitrar Scorings
+Sistema->Sistema: Consulta base de datos
+Sistema-->Usuario: Devuelve lista de Scorings
+Usuario->Sistema: Selecciona un Scoring
+Sistema->Sistema: Consulta detalles del Scoring
+Sistema-->Usuario: Muestra detalles del Scoring
+  
+@enduml

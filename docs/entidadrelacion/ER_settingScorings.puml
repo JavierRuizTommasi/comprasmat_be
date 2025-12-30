@@ -1,0 +1,14 @@
+@startuml
+entity "SettingScorings" as SettingScorings {
+  * _id : ObjectId
+  * codigo : Number
+  * nombre : String
+  * peso : Number
+  * variable : String
+  * activo : Boolean
+}
+
+' Relaciones relevantes
+SettingScorings ||..|| Suppliers : "criterios aplicados a proveedores (lógica externa)"
+
+@enduml

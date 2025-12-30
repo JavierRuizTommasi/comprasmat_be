@@ -1,0 +1,22 @@
+@startuml SecuenceEliminarUsuario
+hide footbox
+
+actor Usuario
+boundary Sistema
+database BaseDeDatos
+
+Usuario->Sistema: Solicita administrar usuarios
+Sistema->BaseDeDatos: Consulta base de datos de Usuarios
+BaseDeDatos-->Sistema: Devuelve lista de usuarios
+Sistema->Usuario: Muestra la lista de los usuarios almacenados
+Usuario->Sistema: Selecciona eliminar un usuario
+Sistema->Usuario: Muestra los datos del usuario solicitado
+Usuario->Sistema: Selecciona Eliminar
+Sistema->BaseDeDatos: Actualiza estado del Usuario a De Baja
+alt Actualización exitosa
+    Sistema->Sistema: Actualiza el estado del Usuario a De Baja en la base de datos
+    Sistema->Usuario: Confirma actualización exitosa de los datos del usuario
+else Error en actualización
+    Sistema->Usuario: Notifica error en la actualización de los datos del usuario
+end
+@enduml

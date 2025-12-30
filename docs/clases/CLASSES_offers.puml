@@ -1,0 +1,31 @@
+@startuml
+class Offers {
+  * _id : ObjectId
+  * oferta : Number
+  * licitacion : String
+  * licitacion_id : String
+  * usuario : String
+  * proveedor : Number
+  * producto : Number
+  * cantidad : Number
+  * precio : Number
+  * estado : Number
+  * fecha : Date  + createOffers(req,res): void
+  + deleteOffers(req,res): void
+  + findMyOffers(req,res): void
+  + getOffer(req,res): void
+  + getOffers(req,res): void
+  + removeUpload(req,res): void
+  + udpateOfferStates(req,res): void
+  + udpateOffers(req,res): void
+
+}
+
+' Relaciones relevantes
+Offers --> Users : "usuario -> Users.usuario"
+Offers --> Suppliers : "proveedor -> Suppliers.codigo"
+Offers --> Products : "producto -> Products.codigo"
+Offers --> Uploads : "Offers.upload (refs to Uploads._id)"
+Offers --> Tenders : "licitacion_id -> Tenders._id (cuando aplica)"
+
+@enduml

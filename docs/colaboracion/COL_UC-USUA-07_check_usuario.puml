@@ -1,0 +1,12 @@
+@startuml ColaboracionSecuenceCheckUsuario
+hide footbox
+
+actor "Sistema" as (1)
+actor "Base de Datos" as (2)
+
+1 --> 1: Solicita obtener \nperfil del usuario
+1 --> 1: Valida el token \nde sesión del usuario
+1 --> 2: Consulta perfil \ndel usuario
+2 --> 1: Devuelve perfil \ndel usuario
+
+@enduml

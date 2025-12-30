@@ -1,0 +1,12 @@
+@startuml SecuenceObtenerCotizacionDolar
+hide footbox
+
+participant Sistema
+participant "Servicio Web BNA" as BNA
+Sistema->BNA: Consulta la cotización del dólar Banco Nación del servicio web en línea
+alt Respuesta exitosa
+    BNA->Sistema: Devuelve la cotización del dólar Banco Nación
+else Error en Respuesta
+    BNA->Sistema: Notificación cotización del dólar no actualizada
+end
+@enduml

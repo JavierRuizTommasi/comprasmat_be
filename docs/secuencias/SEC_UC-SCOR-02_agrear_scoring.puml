@@ -1,0 +1,19 @@
+@startuml SecuenceAgregarScoring
+hide footbox
+
+actor Usuario
+participant Sistema
+Usuario->Sistema: Solicita Administrar Scorings
+Sistema->Sistema: Consulta base de datos
+Sistema-->Usuario: Devuelve lista de Scorings
+Usuario->Sistema: Selecciona "Agregar" nuevo Scoring
+Sistema->Sistema: Muestra formulario de nuevo Scoring
+Usuario->Sistema: Completa formulario y envía datos
+Sistema->Sistema: Valida datos del Scoring
+alt Datos válidos
+  Sistema->Sistema: Almacena el nuevo Scoring en la base de datos
+  Sistema->Usuario: Confirma agregado exitoso del Scoring
+else Datos inválidos
+  Sistema->Usuario: Notifica errores en el formulario
+end
+@enduml

@@ -1,0 +1,15 @@
+@startuml SecuenceValidarUsuario
+hide footbox
+
+actor Usuario
+boundary Sistema
+database "Base de Datos" as BD
+
+Usuario->Sistema: Solicita validar sus credenciales ingresando cuenta y clave
+Sistema->BD: Verifica credenciales en la base de datos de Users
+alt Credenciales válidas
+    Sistema-->Usuario: Permite acceso al sistema y devuelve token de sesión
+else Credenciales inválidas
+    Sistema-->Usuario: Deniega acceso y notifica error de autenticación y elimina el token si existía
+end
+@enduml

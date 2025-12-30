@@ -1,0 +1,17 @@
+@startuml
+entity "Users" as Users {
+  * _id : ObjectId
+  * usuario : String
+  * nombre : String
+  * email : String
+  * perfil : Number
+  * proveedor : Number
+}
+
+' Relaciones relevantes
+' Users (usuario) referenced in Offers, Samples, Uploads
+Users ||--o{ Offers : "usuario (Offers.usuario -> Users.usuario)"
+Users ||--o{ Samples : "usuario"
+Users ||--o{ Uploads : "usuario"
+
+@enduml

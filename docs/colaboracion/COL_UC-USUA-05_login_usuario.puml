@@ -1,0 +1,14 @@
+@startuml ColaboracionSecuenceValidarUsuario
+hide footbox
+
+actor "Usuario" as (1)
+actor "Sistema" as (2)
+actor "Base de Datos" as (3)
+
+1 --> 2: Solicita validar \ncredenciales
+2 --> 3: Verifica credenciales \nen la base de datos
+2 --> 1: Permite acceso al sistema \ny devuelve token de usuario
+2 --> 1: Deniega acceso y notifica \nerror de autenticación \ny devuelve a la\n pantalla de login
+3 --> 2: Devuelve resultado de \nla verificación de credenciales
+
+@enduml

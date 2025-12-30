@@ -1,0 +1,70 @@
+@startuml   WIEW_logic_comprasmat
+'title Arquitectura en Capas - Aplicación Web (Angular + Node.js + MongoDB Atlas)
+
+skinparam DefaultTextAlignment center
+
+' ==========================================================
+'  Capa 1 - Presentación (Frontend Angular)
+' ==========================================================
+
+package "Capa de Presentación Frontend Angular" as CapaPresentacion {
+    rectangle "Componentes Angular Rutas (Router) Servicios HTTP\nHTML/CSS/TypeScript Validaciones en formularios" as AngularUI
+}
+
+
+' ==========================================================
+'  Capa 2 - Aplicación (Backend Express)
+' ==========================================================
+
+package "Capa de Aplicación Node.js + Express" as CapaAplicacion {
+    rectangle "Controladores Express Middlewares Gestión de Sesiones/Tokens\nValidación de Datos Manejo de rutas REST" as ExpressApp
+}
+
+
+
+' ==========================================================
+'  Capa 3 - Dominio (Lógica de Negocio)
+' ==========================================================
+
+package "Capa de Dominio (Reglas de Negocio)" as CapaDominio {
+    rectangle "Servicios de Dominio Entidades Lógicas\nValidaciones internas Transformaciones" as DomainLogic
+}
+
+
+' ==========================================================
+'  Capa 4 - Integración (External Services / APIs)
+' ==========================================================
+
+package "Capa de Integración\n(APIs externas / Cloud Services)" as CapaIntegracion {
+    rectangle "Auth0 / JWT Servicios cloud Pagos \n/ Pasarelas Notificaciones (Email/SMS)\nIntegraciones REST" as IntegrationLayer
+}
+
+
+' ==========================================================
+'  Capa 5 - Persistencia (Mongoose / ODM)
+' ==========================================================
+
+package "Capa de Persistencia \n(Mongoose / ODM)" as CapaPersistencia {
+    rectangle "Modelos Mongoose Repositorios\nMapeo de documentos\nConsultas y transacciones" as Repo
+}
+
+
+' ==========================================================
+'  Capa 6 - Base de Datos (MongoDB Atlas)
+' ==========================================================
+
+package "Capa de Base de Datos MongoDB Atlas" as CapaBD {
+    rectangle "Colecciones Documentos BSON Índices\nReplica Sets Sharding (si aplica)" as MongoDB
+}
+
+' ==========================================================
+' Relaciones verticales
+' ==========================================================
+
+AngularUI --> ExpressApp
+ExpressApp --> DomainLogic
+DomainLogic --> IntegrationLayer
+DomainLogic --> Repo
+Repo --> MongoDB
+
+@enduml

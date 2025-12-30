@@ -1,0 +1,13 @@
+@startuml ColaboracionSecuenceValidarUsuario
+hide footbox
+
+actor "Usuario" as (0)
+actor "Sistema" as (1)
+actor "Dase de Datos" as (2)
+
+0 --> 1: Valida cuenta de usuario
+1 --> 2: Actualiza estado \nde Cuenta a Activa
+2 --> 1: Confirma actualización
+1 --> 0: Notifica cuenta \nvalidada exitosamente
+
+@enduml

@@ -1,0 +1,24 @@
+@startuml
+class Uploads {
+  * _id : ObjectId
+  * fileType : String
+  * originalName : String
+  * filename : String
+  * fileId : String
+  * usuario : String
+  * offer : Number  + createUpload(req,res): void
+  + createUploads(req,res): void
+  + deleteUpload(req,res): void
+  + download(req,res): void
+  + getUpload(req,res): void
+  + getUploads(req,res): void
+  + udpateUpload(req,res): void
+
+}
+
+' Relaciones relevantes
+Uploads --> Users : "usuario -> Users.usuario"
+Uploads --> Offers : "offer -> Offers.oferta (or Offers._id via ref)"
+Uploads --> Suppliers : "supplier uploaded files"
+
+@enduml

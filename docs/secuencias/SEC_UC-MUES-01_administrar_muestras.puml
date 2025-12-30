@@ -1,0 +1,13 @@
+@startuml SecuenceAdministrarMuestras
+hide footbox
+
+actor Usuario
+participant Sistema
+Usuario->Sistema: Solicita Aminitrar Muestras
+Sistema->Sistema: Consulta base de datos las Muestras relacionadas al usuario Proveedor
+Sistema-->Usuario: Devuelve lista de Muestras 
+Usuario->Sistema: Selecciona una Muestra
+Sistema->Sistema: Consulta detalles de la Muestra
+Sistema-->Usuario: Muestra detalles de la Muestra
+  
+@enduml

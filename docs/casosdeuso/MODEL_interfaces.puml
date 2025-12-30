@@ -1,0 +1,40 @@
+@startuml MODEL_interfaces
+
+actor L as "Encargado de 
+Laboratorio"
+actor C as "Encargado de 
+Compras"
+
+package "ERP Presea" {
+    usecase REQ as "Agregar Req. 
+    Insumo" 
+    usecase SOL as "Agregar 
+    Solicitud" 
+    database ERP as "Sistema ERP"
+    collections COL as "Solicitudes y Tablas"
+    boundary EXP as "Interfaz 
+    Exporta 
+    Tablas"
+    usecase IMP as "Exportar 
+    Tablas"
+    boundary IN as "Interfaz 
+    Importar
+    Tablas"
+}
+
+database DB as "Base de
+Datos" 
+
+
+L -right-> (REQ) : "Datos Insumo"
+(REQ) --> (ERP) : "Datos Insumo"
+(ERP) ..> (C) : "Consulta Req. Insumo"
+C --> (SOL) : "Datos Insumo"
+(SOL) --> (ERP) : "Solicitud Insumo"
+(EXP) --> (ERP) : "Solicitudes Nuevas y Tablas"
+(ERP) ..> (EXP) : "Solicitudes Nuevas y Tablas"
+(EXP) -right-> (COL) : "Solicitudes Nuevas y Tablas" 
+COL --> (IMP) : "Solicitudes Nuevas y Tablas"
+(IMP) -left-> IN : "Solicitudes Nuevas y Tablas"
+IN --> (DB) : "Solicitudes Nuevas y Tablas"
+@enduml

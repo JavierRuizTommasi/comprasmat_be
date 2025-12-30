@@ -1,0 +1,17 @@
+@startuml SecuenceEliminarProveedor
+hide footbox
+
+actor Usuario
+participant Sistema
+Usuario->Sistema: Solicita administrar proveedores
+Sistema->Usuario: Muestra la lista de los proveedores almacenados
+Usuario->Sistema: Selecciona eliminar un proveedor
+Sistema->Usuario: Muestra los datos del proveedor solicitado
+Usuario->Sistema: Selecciona Eliminar
+alt Actualización exitosa
+    Sistema->Sistema: Actualiza el estado del proveedor a De Baja en la base de datos
+    Sistema->Usuario: Confirma actualización exitosa de los datos del proveedor
+else Error en actualización
+    Sistema->Usuario: Notifica error en la actualización de los datos del proveedor
+end
+@enduml

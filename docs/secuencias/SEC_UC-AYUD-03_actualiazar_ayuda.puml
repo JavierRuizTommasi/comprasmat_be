@@ -1,0 +1,18 @@
+@startuml SecuenceActualizarAyuda
+hide footbox
+
+actor Usuario
+participant Sistema
+Usuario->Sistema: Solicita administrar Ayudas
+Sistema->Usuario: Muestra la lista de Items de Ayuda almacenados
+Usuario->Sistema: Selecciona actualizar un Item de Ayuda
+Sistema->Sistema: Consulta los datos del Item de Ayuda seleccionada
+Sistema->Usuario: Muestra los datos del item de Ayuda seleccionada
+Usuario->Sistema: Actualiza los datos del Item de Ayuda y selecciona Guardar
+alt Actualización exitosa
+    Sistema->Sistema: Actualiza los datos del Item de Ayuda en la base de datos
+    Sistema->Usuario: Confirma actualización exitosa del Item de Ayuda
+else Error en actualización
+    Sistema->Usuario: Notifica error en la actualización del Item de Ayuda
+end
+@enduml

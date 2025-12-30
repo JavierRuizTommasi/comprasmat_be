@@ -1,0 +1,23 @@
+@startuml
+class MyProducts {
+  * _id : ObjectId
+  * usuario : String
+  * proveedor : Number
+  * codigo : Number
+  * descrip : String  + createMyProduct(req,res): void
+  + deleteMyProduct(req,res): void
+  + deleteMyProductsGroup(req,res): void
+  + findMyProducts(req,res): void
+  + getMyProduct(req,res): void
+  + getMyProducts(req,res): void
+  + insertMyProducts(req,res): void
+  + udpateMyProduct(req,res): void
+
+}
+
+' Relaciones relevantes
+MyProducts --> Users : "usuario -> Users.usuario"
+MyProducts --> Suppliers : "proveedor -> Suppliers.codigo"
+MyProducts --> Products : "codigo -> Products.codigo (posible correspondencia)"
+
+@enduml

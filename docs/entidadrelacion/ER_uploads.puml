@@ -1,0 +1,17 @@
+@startuml
+entity "Uploads" as Uploads {
+  * _id : ObjectId
+  * fileType : String
+  * originalName : String
+  * filename : String
+  * fileId : String
+  * usuario : String
+  * offer : Number
+}
+
+' Relaciones relevantes
+Uploads }o--|| Users : "usuario -> Users.usuario"
+Uploads }o--|| Offers : "offer -> Offers.oferta (or Offers._id via ref)"
+Uploads }o--|| Suppliers : "supplier uploaded files"
+
+@enduml

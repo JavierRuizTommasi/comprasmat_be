@@ -1,0 +1,14 @@
+@startuml ColaboracionSecuenceRegistrarUsuario
+hide footbox
+
+actor "Usuario" as (1)
+actor "Sistema" as (2)
+actor "BaseDeDatos" as (3)
+
+1 --> 2: Solicita registro de usuario
+2 --> 3: Inserta nuevo registro de usuario
+3 --> 2: Confirma resultado de la inserción
+2 --> 1: Notifica resultado de la inserción
+2 --> 1: Envía mail  de Bienvenida
+
+@enduml

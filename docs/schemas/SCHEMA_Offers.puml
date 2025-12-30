@@ -1,0 +1,39 @@
+@startuml
+class Offers {
+  Number oferta
+  String licitacion
+  String licitacion_id
+  String usuario
+  String email
+  Number proveedor
+  String provenom
+  Date fecha
+  Date finaliza
+  Number producto
+  String descrip
+  Number cantidad
+  String unidad
+  Number costo
+  Number precio
+  String incoterm
+  Number entrega
+  Number estado
+  String detalle
+  Number scoreProveedor
+  Number scorePrecio
+  Number scoreEntrega
+  Number scoreCantidad
+  Number scoring
+  Number financiacion
+  Number scoreFinanciacion
+  Number scoreRanking
+  Number precioPesos
+  Number cotizacion
+  Number desempeno
+  ObjectId[] upload (ref: Uploads)
+  String observacion
+  String lugarEntrega
+  Date createdAt
+  Date updatedAt
+}
+@enduml

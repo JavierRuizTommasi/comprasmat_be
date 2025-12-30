@@ -1,0 +1,14 @@
+@startuml SecuenceRegistrarUsuario
+hide footbox
+
+actor Usuario
+boundary Sistema
+database BaseDeDatos
+Usuario->Sistema: Solicita registro de usuario
+Sistema->Sistema ++: Valida datos del usuario
+Sistema->Sistema --: Almacena usuario en base de datos
+Sistema->BaseDeDatos: Inserta nuevo registro de usuario
+BaseDeDatos-->Sistema: Confirma inserción exitosa
+Sistema->Usuario: Confirma registro exitoso y envía mail \nde Bienvenida paraa validar cuenta
+
+@enduml

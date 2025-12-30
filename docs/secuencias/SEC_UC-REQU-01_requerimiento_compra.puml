@@ -1,0 +1,7 @@
+@startuml SecuenceRequerimientoCompraInsumo
+hide footbox
+
+Actor "Encargado de Laboratorio" as Usuario
+boundary "Sistema Presea" as Sistema
+Usuario->Sistema: Generar requerimiento de compra de insumo
+@enduml

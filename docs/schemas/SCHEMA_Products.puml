@@ -1,0 +1,25 @@
+@startuml
+class Products {
+  Number codigo
+  String descrip
+  String unidad
+  String rubro
+  String subrubro
+  Number costo
+  Date ultcompra
+  Number proveedor
+  String provenom
+  Number precio
+  Boolean activo
+  Number historico
+  String detaeng
+  String rubroeng
+  String subrubeng
+  String caracteris
+  String caracteriseng
+  Number rankcontrib
+  String link
+  Date createdAt
+  Date updatedAt
+}
+@enduml

@@ -1,0 +1,55 @@
+@startuml MODEL_solicitudes_ofertas
+
+left to right direction
+
+actor "Proveedor" as P
+
+usecase MNUE as "Mail Nueva
+Solicitud"
+usecase MACT as "Mail Actualización
+Solicitud"
+database DB as "Base de
+Datos" 
+usecase ADM as "Adm. Ofertas"
+usecase AGR as "Agregar Oferta"
+usecase ACT as "Actualizar 
+Oferta"
+usecase ELI as "Eliminar 
+Oferta"
+usecase ADJ as "Adjudicar 
+Oferta"
+usecase SCO as "Calcular 
+Scoring"    
+usecase NOT as "Mail Estado 
+Oferta" 
+
+(MNUE) --> (DB) : "Pide Solicitudes Nuevas"
+(DB) ..> (MNUE) : "Lista Solicitudes Nuevas"
+(MNUE) ..> P : "Notificación Nueva Solicitud"
+(MACT) --> (DB) : "Actualiza Solicitud"
+(DB) ..> (MACT) : "Solicitud Actualizada"
+(MACT) ..> P : "Notificación Solicitud Actualizada"
+P --> (ADM) : "Datos Oferta"
+(ADM) --> (DB) : "Consultar Ofertas"
+(DB) ..> (ADM) : "Datos Oferta/Solicitudes"
+(ADM) --> P : "Lista Solicitud/Ofertas"
+P --> (AGR) : "Datos Oferta"
+(AGR) --> (DB) : "Datos Oferta"
+(DB) ..> (AGR) : "Oferta Agregada"
+P --> (ACT) : "Datos Oferta"
+(ACT) --> (DB) : "Datos Oferta"
+(DB) ..> (ACT) : "Oferta Actualizada"
+P --> (ELI) : "Datos Oferta"
+(ELI) --> (DB) : "Datos Oferta"
+(DB) ..> (ELI) : "Oferta Eliminada"
+P --> (ADJ) : "Datos Oferta"
+(ADJ) --> (DB) : "Datos Oferta"
+(DB) ..> (ADJ) : "Oferta Ajudicada"
+(AGR) --> (SCO) : "Datos Oferta"
+(SCO) --> (DB) : "Datos Oferta/Solicitud"
+(ACT) --> (SCO) : "Datos Oferta"
+(ELI) --> (SCO) : "Datos Oferta"
+(SCO) --> (NOT) : "Mail Estado Oferta"
+(NOT) ..> P : "Notificación Estado Oferta"
+
+@enduml

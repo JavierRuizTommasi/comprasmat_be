@@ -1,0 +1,17 @@
+@startuml ColaboracionSecuenceActualizarScoringOferta
+hide footbox
+
+actor "Usuario" as (1)
+actor "Sistema" as (2)
+actor "Base de Datos" as (3)
+
+2 --> 3 : Solicita Datos \nOfertas de la \nSolicitud
+3 --> 2 : Devuelve \nDatos \nOfertas de \nla Solicitud
+2 --> 3 : Solicita \nDatos \nTablas
+3 --> 2 : Devuelve \nDatos \nTablas
+2 --> 2 : Calcula Scoring de \la Ofertas de la Soicitud
+2 --> 3 : Envía los Datos \nactualizados \nde la Oferta
+3 --> 2 : Confirma \nresultado de \nla actualización
+2 --> 1 : Notifica \nresultado \nScoring de la \nOferta a \nProveedores
+
+@enduml

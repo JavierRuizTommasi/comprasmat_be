@@ -1,0 +1,23 @@
+@startuml
+class Tenders {
+  String licitacion
+  Date fecha
+  Date finaliza
+  Number producto
+  String descrip
+  Number cantidad
+  String unidad
+  Number costo
+  Date ultcompra
+  Number proveedor
+  String provenom
+  Number estado
+  ObjectId[] offer (ref: Offers)
+  Number historico
+  Number sugerida
+  Boolean send48
+  Boolean send72
+  Date createdAt
+  Date updatedAt
+}
+@enduml

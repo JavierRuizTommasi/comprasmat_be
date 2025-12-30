@@ -1,0 +1,29 @@
+@startuml
+class MailsToSuppliers {
+  String licitacion
+  Number producto
+  String descrip
+  Number cantidad
+  String unidad
+  String fecha
+  String usuario
+  Number proveedor
+  String provenom
+  String email
+  String from
+  String to
+  String bcc
+  String subject
+  String link
+  String tipo
+  Number cantOffer
+  Number precOffer
+  String moneda
+  String unidOffer
+  String incoterm
+  Number entrega
+  Number financiacion
+  Date createdAt
+  Date updatedAt
+}
+@enduml

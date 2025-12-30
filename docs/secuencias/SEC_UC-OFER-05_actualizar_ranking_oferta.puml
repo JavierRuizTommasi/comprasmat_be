@@ -1,0 +1,8 @@
+@startuml SecuenceActualizarRankingOferta
+hide footbox
+
+participant Sistema
+Sistema->Sistema ++ : Consulta la lista de Ofertas asociadas a la Solicitud
+Sistema->Sistema -- : Calcula el Ranking de cada Oferta
+Sistema->Sistema: Actualiza el nuevo Ranking de cada Oferta
+@enduml

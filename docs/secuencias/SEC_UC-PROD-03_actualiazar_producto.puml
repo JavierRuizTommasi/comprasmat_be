@@ -1,0 +1,24 @@
+@startuml SecuenceActualizarProducto
+hide footbox
+
+participant Usuario
+boundary Sistema
+database "Base de Datos" as BD
+
+Usuario->Sistema: Solicita administrar productos
+Sistema->BD: Consulta lista de productos
+BD-->Sistema: Devuelve lista de productos
+Sistema->Usuario: Muestra la lista de los productos almacenados
+Usuario->Sistema: Aelecciona actualizar un producto
+Sistema->Sistema: Consulta los datos del producto Validación
+Sistema->Usuario: Muestra los datos del producto seleccionado
+Usuario->Sistema: Actualiza los datos del producto y selecciona Guardar
+Sistema->Sistema: Valida los datos actualizados
+alt Validación exitosa
+    Sistema->BD: Actualiza los datos del producto en la base de datos
+    BD-->Sistema: Confirma actualización en la base de datos
+    Sistema->Usuario: Confirma actualización exitosa del producto
+else Error en validacion
+    Sistema->Usuario: Notifica error en la validación de los datos
+end
+@enduml

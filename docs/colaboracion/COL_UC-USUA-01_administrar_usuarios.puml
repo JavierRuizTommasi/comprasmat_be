@@ -1,0 +1,17 @@
+@startuml ColaboracionSecuenceAdministrarUsuarios
+hide footbox
+
+actor "Usuario" as (1)
+actor "Sistema" as (2)
+actor "BaseDeDatos" as (3)
+
+1 --> 2: Solicita administrar \nusuarios
+2 --> 3: Consulta base de datos \nde usuarios
+3 --> 2: Devuelve lista \nde usuarios
+2 --> 1: Muestra la lista de \nlos usuarios almacenados
+1 --> 2: Selecciona consultar \nun usuario
+2 --> 3: Consulta detalles \ndel usuario seleccionado
+3 --> 2: Devuelve datos del \nusuario solicitado
+2 --> 1: Muestra los datos \ndel usuario solicitado
+
+@enduml

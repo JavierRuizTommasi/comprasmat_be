@@ -1,0 +1,99 @@
+@startuml
+' Entidades y atributos clave
+entity "Users" as Users {
+  * _id : ObjectId
+  * usuario : String
+  * nombre : String
+  * email : String
+  * perfil : Number
+}
+
+entity "Suppliers" as Suppliers {
+  * _id : ObjectId
+  * codigo : Number
+  * nombre : String
+  * usuario : String
+}
+
+entity "Products" as Products {
+  * _id : ObjectId
+  * codigo : Number
+  * descrip : String
+  * unidad : String
+  * proveedor : Number
+}
+
+entity "MyProducts" as MyProducts {
+  * _id : ObjectId
+  * usuario : String
+  * proveedor : Number
+  * codigo : Number
+}
+
+entity "Offers" as Offers {
+  * _id : ObjectId
+  * oferta : Number
+  * licitacion_id : String
+  * usuario : String
+  * proveedor : Number
+  * producto : Number
+  * precio : Number
+  * estado : Number
+}
+
+entity "Tenders" as Tenders {
+  * _id : ObjectId
+  * licitacion : String
+  * fecha : Date
+  * finaliza : Date
+}
+
+entity "Uploads" as Uploads {
+  * _id : ObjectId
+  * fileType : String
+  * originalName : String
+  * filename : String
+  * fileId : String
+  * usuario : String
+  * offer : Number
+}
+
+entity "Samples" as Samples {
+  * _id : ObjectId
+  * muestra : Number
+  * usuario : String
+  * proveedor : Number
+  * producto : Number
+  * cantidad : Number
+}
+
+entity "SettingScorings" as SettingScorings {
+  * _id : ObjectId
+  * codigo : Number
+  * nombre : String
+  * peso : Number
+}
+
+entity "MailsToSuppliers" as MailsToSuppliers {
+  * _id : ObjectId
+  * licitacion : String
+  * producto : Number
+  * proveedor : Number
+  * email : String
+}
+
+' Relaciones (multiplicidad)
+Suppliers ||--o{ Products : "proveedor (Products.proveedor -> Suppliers.codigo)"
+Suppliers ||--o{ MyProducts : "proveedor"
+Products ||--o{ Offers : "producto"
+Suppliers ||--o{ Offers : "proveedor"
+Users ||--o{ Offers : "usuario"
+Tenders ||--o{ Offers : "offers (Tenders.offer -> Offers._id)"
+Offers ||--o{ Uploads : "upload references (Offers.upload)"
+Suppliers ||--o{ Uploads : "supplier uploads"
+Products ||--o{ Samples : "producto"
+Suppliers ||--o{ Samples : "proveedor"
+SettingScorings ||..|| Suppliers : "evaluación (lógica externa)"
+MailsToSuppliers ||--|| Suppliers : "destinatario proveedor"
+
+@enduml

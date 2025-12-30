@@ -1,0 +1,37 @@
+@startuml MODEL_usuarios
+
+left to right direction
+
+actor "Usuario" as U
+database BD as "Base de
+ Datos" 
+
+usecase REG as "Registrar 
+Usuario" 
+usecase ACT as "Actualizar 
+Usuario"
+usecase WEL as "Welcome 
+Usuario"
+usecase VAL as "Validar 
+Usuario"
+usecase LOG as "Login" 
+usecase OUT as "Logout" 
+usecase ELI as "Eliminar 
+Usuario"
+
+U --> (REG) : "Datos Usuario"
+U --> (ACT) : "Datos Usuario"
+U --> (ELI) : "Datos Usuario"
+(REG) --> BD : "Registrar Usuario"
+(WEL) ..> U : "Enviar Mail Bienvenida"
+U --> (VAL) : "Validar Usuario"
+(VAL) --> BD : "Actualizar Usuario"
+(ACT) --> BD : "Actualizar Usuario"
+U --> (LOG) : "Credenciales"
+(LOG) --> BD : "Validar Credenciales"
+BD --> (LOG) : "Resultado Validación"
+(LOG) --> U : "Datos Usuario"
+U --> (OUT) : "Cerrar Sesión"
+(ELI) --> BD : "Eliminar Usuario"
+(REG) --> (WEL) : "Datos Usuario"
+@enduml

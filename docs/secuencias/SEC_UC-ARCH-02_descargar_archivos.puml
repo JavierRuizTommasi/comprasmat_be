@@ -1,0 +1,10 @@
+@startuml SecuenceDescargarArchivos
+hide footbox
+
+actor Usuario
+participant Sistema
+Usuario->Sistema: Selecciona Archivos adjuntos para Descargar desde la Base de Datos
+Sistema->Sistema ++: Descarga los Archivos desde la Base de Datos
+Sistema-->Usuario --: Confirma descarga exitosa de Archivos
+  
+@enduml

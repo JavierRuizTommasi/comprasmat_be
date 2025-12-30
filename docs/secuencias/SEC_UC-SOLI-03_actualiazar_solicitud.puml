@@ -1,0 +1,18 @@
+@startuml SecuenceActualizarSolicitudes
+hide footbox
+
+actor Usuario
+participant Sistema
+Usuario->Sistema: Solicita administrar solicitudes
+Sistema->Usuario: Muestra la lista de los solicitudes almacenados
+Usuario->Sistema: Selecciona actualizar una solicitud
+Sistema->Sistema: Consulta los datos del solicitud seleccionado
+Sistema->Usuario: Muestra los datos del solicitud seleccionado
+Usuario->Sistema: actualiza los datos del solicitud y selecciona Guardar
+alt Actualización exitosa
+    Sistema->Sistema: Actualiza los datos del solicitud en la base de datos
+    Sistema->Usuario: Confirma actualización exitosa del solicitud
+else Error en actualización
+    Sistema->Usuario: Notifica error en la actualización del solicitud
+end
+@enduml

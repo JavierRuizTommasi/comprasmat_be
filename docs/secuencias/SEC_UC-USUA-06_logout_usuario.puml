@@ -1,0 +1,8 @@
+@startuml SecuenceLogoutUsuario
+hide footbox
+
+actor Usuario
+boundary Sistema
+Usuario->Sistema: Solicita salir del sistema
+Sistema->Usuario: Elimina el token y devuelve a la ventana principal del sistema
+@enduml

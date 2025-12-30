@@ -1,0 +1,13 @@
+@startuml SecuenceAdministrarAyuda
+hide footbox
+
+actor Usuario
+participant Sistema
+Usuario->Sistema: Solicita Aminitrar Ayuda
+Sistema->Sistema: Consulta la base de datos
+Sistema-->Usuario: Devuelve lista de Items de Ayuda 
+Usuario->Sistema: Selecciona un Itema de Ayuda
+Sistema->Sistema: Consulta detalles del item de Ayuda
+Sistema-->Usuario: Muestra detalles del item de Ayuda
+  
+@enduml

@@ -1,0 +1,16 @@
+@startuml ColaboracionSecuenceAdjudicarOferta
+hide footbox
+
+actor "Usuario" as (1)
+actor "Sistema" as (2)
+actor "Base de Datos" as (3)
+
+1 --> 2 : Solicita adjudicar \nuna Oferta
+2 --> 3 : Solicita Datos de la \nOferta seleccionada
+2 --> 1 : Muestra Datos de \la Oferta seleccionada
+1 --> 2 : Actualiza Datos y \nselecciona Guardar
+2 --> 3 : Envía cambio de \nEstado a Adjudicada
+3 --> 2 : Confirma resultado de \nla actualización
+2 --> 1 : Notifica resultado \nde la adjudicación \nde la Solicitud \na Proveedores
+
+@enduml

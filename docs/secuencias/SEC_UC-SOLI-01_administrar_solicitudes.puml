@@ -1,0 +1,13 @@
+@startuml SecuenceAdministrarSolicitudes
+hide footbox
+
+actor Usuario
+participant Sistema
+Usuario->Sistema: Solicita Aministrar solicitudes
+Sistema->Sistema: Consulta base de datos
+Sistema-->Usuario: Devuelve lista de solicitudes
+Usuario->Sistema: Selecciona un solicitud
+Sistema->Sistema: Consulta detalles del solicitud
+Sistema-->Usuario: Muestra detalles del solicitud
+  
+@enduml

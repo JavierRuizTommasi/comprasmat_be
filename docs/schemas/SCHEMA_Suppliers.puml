@@ -1,0 +1,34 @@
+@startuml
+class Suppliers {
+  Number codigo
+  String nombre
+  String usuario
+  String domicilio
+  String telefono
+  Number c_postal
+  String localidad
+  String provincia
+  String pais
+  Number desempeno
+  Date ultcompra
+  ObjectId[] upload (ref: Uploads)
+  Boolean activo
+  String fantasia
+  String actividad
+  String correspondencia
+  String cuentacbu
+  String CUIT
+  String IIBB
+  Boolean retIIBBSF
+  Number aliretIIBBSF
+  String motiexenIIBBSF
+  Boolean retIIBBMI
+  Number aliretIIBBMI
+  String motiexenIIBBMI
+  Boolean retGAN
+  Number aliretGAN
+  String motiexenGAN
+  Date createdAt
+  Date updatedAt
+}
+@enduml

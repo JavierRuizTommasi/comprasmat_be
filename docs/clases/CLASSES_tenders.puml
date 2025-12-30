@@ -1,0 +1,27 @@
+@startuml
+class Tenders {
+  * _id : ObjectId
+  * licitacion : String
+  * fecha : Date
+  * finaliza : Date
+  * producto : Number
+  * cantidad : Number
+  * unidad : String
+  * costo : Number
+  * estado : Number  + createTenders(req,res): void
+  + deleteTenders(req,res): void
+  + getTender(req,res): void
+  + getTenders(req,res): void
+  + getTendersActives(req,res): void
+  + sendTenders(req,res): void
+  + udpateTenders(req,res): void
+  + updateScoring(req,res): void
+
+}
+
+' Relaciones relevantes
+Tenders --> Offers : "Tenders.offer -> Offers._id (lista de ofertas)"
+Tenders --> Products : "producto -> Products.codigo"
+Tenders --> Suppliers : "proveedor sugerido"
+
+@enduml

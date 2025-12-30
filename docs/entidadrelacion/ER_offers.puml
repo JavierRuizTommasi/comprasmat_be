@@ -1,0 +1,23 @@
+@startuml
+entity "Offers" as Offers {
+  * _id : ObjectId
+  * oferta : Number
+  * licitacion : String
+  * licitacion_id : String
+  * usuario : String
+  * proveedor : Number
+  * producto : Number
+  * cantidad : Number
+  * precio : Number
+  * estado : Number
+  * fecha : Date
+}
+
+' Relaciones relevantes
+Offers }o--|| Users : "usuario -> Users.usuario"
+Offers }o--|| Suppliers : "proveedor -> Suppliers.codigo"
+Offers }o--|| Products : "producto -> Products.codigo"
+Offers ||--o{ Uploads : "Offers.upload (refs to Uploads._id)"
+Offers }o--|| Tenders : "licitacion_id -> Tenders._id (cuando aplica)"
+
+@enduml

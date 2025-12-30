@@ -1,0 +1,17 @@
+@startuml SecuenceEliminarSolicitudes
+hide footbox
+
+actor Usuario
+participant Sistema
+Usuario->Sistema: Solicita administrar solictudes
+Sistema->Usuario: Muestra la lista de los solicitudes almacenados
+Usuario->Sistema: Selecciona eliminar una solicitud
+Sistema->Usuario: Muestra los datos de la solicitud solicitada
+Usuario->Sistema: Selecciona Eliminar
+alt Actualización exitosa
+    Sistema->Sistema: Actualiza el estado de la solicitud a De Baja en la base de datos
+    Sistema->Usuario: Confirma actualización exitosa de los datos del solicitud
+else Error en actualización
+    Sistema->Usuario: Notifica error en la actualización de los datos del solicitud
+end
+@enduml

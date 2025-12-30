@@ -1,0 +1,18 @@
+@startuml SecuenceActualizarScoring
+hide footbox
+
+actor Usuario
+participant Sistema
+Usuario->Sistema: Solicita Administrar Scorings
+Sistema->Usuario: Muestra la lista de los Scorings almacenados
+Usuario->Sistema: Selecciona actualizar un Scoring
+Sistema->Sistema: Consulta los datos del Scoring seleccionado
+Sistema->Usuario: Muestra los datos del Scoring seleccionado
+Usuario->Sistema: Actualiza los datos del Scoring y selecciona Guardar
+alt Actualización exitosa
+    Sistema->Sistema: Actualiza los datos del Scoring en la base de datos
+    Sistema->Usuario: Confirma actualización exitosa del Scoring
+else Error en actualización
+    Sistema->Usuario: Notifica error en la actualización del Scoring
+end
+@enduml

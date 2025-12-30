@@ -1,0 +1,15 @@
+@startuml ColaboracionSecuenceAgregarSolicitud
+hide footbox
+
+actor "Usuario" as (1)
+actor "Sistema" as (2)
+actor "Base de Datos" as (3)
+
+1 --> 2 : Solicita registrar una Solicitud
+2 --> 3 : Inserta nuevo registro de Solicitud
+3 --> 2 : Confirma resultado de la inserción
+2 --> 1 : Notifica resultado de la inserción
+2 --> 1 : Envia mail Nueva \nSolicitud a Proveedores
+
+
+@enduml

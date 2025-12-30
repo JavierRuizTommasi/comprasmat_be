@@ -1,0 +1,13 @@
+@startuml SecuenceAdministrarOfertas
+hide footbox
+
+actor Usuario
+participant Sistema
+Usuario->Sistema: Solicita Aministrar Ofertas
+Sistema->Sistema: Consulta base de datos
+Sistema-->Usuario: Devuelve lista de Solicitudes y Ofertas asociadas a la cuenta del usuario
+Usuario->Sistema: Selecciona un Oferta
+Sistema->Sistema: Consulta detalles del Oferta
+Sistema-->Usuario: Muestra detalles del Oferta
+  
+@enduml

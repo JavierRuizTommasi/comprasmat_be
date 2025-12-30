@@ -1,0 +1,23 @@
+@startuml SecuenceAgregarProducto
+hide footbox
+
+actor Usuario
+boundary Sistema
+database BaseDeDatos as BD
+
+Usuario->Sistema: Solicita Administrar Productos
+Sistema->BD: Consulta base de datos
+BD-->Sistema: Devuelve lista de Productos
+Sistema-->Usuario: Muestra lista de Productos
+Usuario->Sistema: Selecciona "Agregar" nuevo Producto
+Sistema->Sistema: Muestra formulario de nuevo Producto
+Usuario->Sistema: Completa formulario y selecciona "Guardar"
+Sistema->BD: Valida datos del nuevo Producto
+alt Validación exitosa
+  Sistema->BD: Almacena el nuevo Producto en la base de datos
+  BD-->Sistema: Confirma almacenamiento exitoso
+  Sistema->Usuario: Confirma agregado exitoso del Producto
+else Datos inválidos
+  Sistema->Usuario: Notifica errores en el formulario
+end
+@enduml

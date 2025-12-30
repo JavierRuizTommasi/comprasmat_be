@@ -1,0 +1,21 @@
+@startuml SecuenceValidarUsuario
+hide footbox
+
+actor "Usuario" as U
+boundary "Sistema" as S
+database "Tabla Usuarios" as DB
+
+U -> U++: Luego de la ejecución del \nUC-USUA-08 Welcome Usuario 
+U -> S--: Hace clic en el link token recibido \npor mail para activar su cuenta
+S -> S ++: Recibe la solicitud de activación \nde cuenta con el token
+S -> DB --: Actualiza el estado de la cuenta \nde Usuario de "Pendiente" a "Activa"
+alt Cuenta activada exitosamente
+    DB --> S: Confirma actualización exitosa
+    S --> U: Muestra mensaje "Cuenta activada exitosamente"
+    S --> U: Redirige a la Pantalla principal del Sistema
+else
+    DB --> S: Informa error en la actualización
+    S --> U: Muestra mensaje "Error al activar la cuenta. \nPor favor, contacte al soporte."
+end
+
+@enduml

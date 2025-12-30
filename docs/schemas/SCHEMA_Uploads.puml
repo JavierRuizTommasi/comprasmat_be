@@ -1,0 +1,12 @@
+@startuml
+class Uploads {
+  String fileType
+  String originalName
+  String filename
+  String fileId
+  Date createdAt
+  String usuario
+  Number offer
+  Date updatedAt
+}
+@enduml

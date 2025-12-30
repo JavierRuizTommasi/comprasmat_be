@@ -1,0 +1,20 @@
+@startuml UC-OFER-06_AdjudicarOferta
+hide footbox
+
+actor "Encargado de Compras" as Usuario
+participant Sistema
+Usuario->Sistema: Solicita Administrar Ofertas
+Sistema->Usuario: Consulta base de datos y muestra lista de Ofertas
+Usuario->Sistema: Selecciona una Oferta 
+Sistema->Usuario: Devuelve la lista de Ofertas de la Oferta
+Usuario->Sistema: Selecciona una Oferta y elige la opción "Adjudicar"
+Sistema->Sistema: Muestra formulario con los datos de la Oferta
+Usuario->Sistema: Confirma la Adjucicación de la Oferta
+Sistema->Sistema: Actualiza el Estado de la Oferta a "Adjudicada" y para el resto de las Ofertas de la solicitud como "Rechazada"
+Sistema->Sistema: Actualiza el Estado de la Solicitud a "Adjudicada" 
+alt Actualización exitosa
+  Sistema->Sistema: Ejecuta el UC-MAIL-02 Envío de Notificación de Adjudicación de Oferta
+else Error en la actualización
+  Sistema->Usuario: Notifica errores en el formulario
+end
+@enduml

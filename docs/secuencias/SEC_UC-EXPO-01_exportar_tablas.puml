@@ -1,0 +1,10 @@
+@startuml SecuenceExportarTablas
+hide footbox
+
+boundary "Sistema Presea" as Sistema
+boundary Interfaz
+database "Base de Datos MongoDB" as Base
+Sistema->Interfaz: Generar archivos json de las tablas
+Interfaz->Base: Exportar tablas a Base de Datos
+Base-->Base: Base de Datos actualizada
+@enduml

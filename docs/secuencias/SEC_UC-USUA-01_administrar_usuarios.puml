@@ -1,0 +1,15 @@
+@startuml SecuenceAdministrarUsuarios
+hide footbox
+
+actor Usuario
+boundary Sistema
+database BaseDeDatos
+Usuario->Sistema: Solicita administrar usuarios
+Sistema->BaseDeDatos: Consulta base de datos de usuarios
+BaseDeDatos-->Sistema: Devuelve lista de usuarios
+Sistema->Usuario: Muestra la lista de los usuarios almacenados
+Usuario->Sistema: Selecciona consultar un usuario
+Sistema-->BaseDeDatos: Consulta detalles del usuario seleccionado
+BaseDeDatos-->Sistema: Devuelve datos del usuario solicitado
+Sistema->Usuario: Muestra los datos del usuario solicitado
+@enduml

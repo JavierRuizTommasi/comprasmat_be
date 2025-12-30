@@ -1,0 +1,16 @@
+@startuml ColaboracionSecuenceAdministrarProducts
+hide footbox
+
+participant "Usuario" as 1
+participant "Sistema" as 2
+participant "BD" as 3
+
+1 -> 2: 1. Solicita Aminitrar productos
+2 -> 3: 2. Consulta base de datos de Products
+3 -> 2: 3. Devuelve lista de productos
+2 -> 1: 4. Devuelve lista de productos
+1 -> 2: 5. Selecciona un producto
+2 --> 2: 6. Consulta detalles del producto
+2 -> 1: 7. Muestra detalles del producto
+
+@enduml

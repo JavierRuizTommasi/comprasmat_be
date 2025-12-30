@@ -1,0 +1,19 @@
+@startuml SecuenceAgregarProveedores
+hide footbox
+
+actor Usuario
+participant Sistema
+Usuario->Sistema: Solicita Administrar proveedores
+Sistema->Sistema: Consulta base de datos
+Sistema-->Usuario: Devuelve lista de proveedors
+Usuario->Sistema: Selecciona "Agregar nuevo proveedor"
+Sistema->Sistema: Muestra formulario de nuevo proveedor
+Usuario->Sistema: Completa formulario y envía datos
+Sistema->Sistema: Valida datos del proveedor
+alt Datos válidos
+  Sistema->Sistema: Almacena nuevo proveedor en la base de datos
+  Sistema->Usuario: Confirma agregado exitoso del proveedor
+else Datos inválidos
+  Sistema->Usuario: Notifica errores en el formulario
+end
+@enduml

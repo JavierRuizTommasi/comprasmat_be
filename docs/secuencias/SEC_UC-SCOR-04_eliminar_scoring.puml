@@ -1,0 +1,17 @@
+@startuml SecuenceEliminarScoring
+hide footbox
+
+actor Usuario
+participant Sistema
+Usuario->Sistema: Solicita Administrar Scorings
+Sistema->Usuario: Muestra la lista de los Scorings almacenados
+Usuario->Sistema: Selecciona eliminar un Scoring
+Sistema->Usuario: Muestra los datos del Scoring solicitado
+Usuario->Sistema: Selecciona Eliminar
+alt Actualización exitosa
+    Sistema->Sistema: Actualiza el estado del Scoring a De Baja en la base de datos
+    Sistema->Usuario: Confirma actualización exitosa de los datos del Scoring
+else Error en actualización
+    Sistema->Usuario: Notifica error en la actualización de los datos del Scoring
+end
+@enduml

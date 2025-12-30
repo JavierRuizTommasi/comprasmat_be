@@ -1,0 +1,263 @@
+@startuml Diagrama de Datos
+' Combined schema classes generated from Mongoose model files
+
+class Users {
+  String usuario
+  String nombre
+  String email
+  String pass
+  Number perfil
+  Number proveedor
+  String contacto
+  String direccion
+  String ciudad
+  String pais
+  String telefono
+  Boolean activo
+  String language
+  String contacto2
+  String email2
+  String contacto3
+  String email3
+  String contacto4
+  String email4
+  String CUIT
+  Date createdAt
+  Date updatedAt
+}
+
+class Tenders {
+  String licitacion
+  Date fecha
+  Date finaliza
+  Number producto
+  String descrip
+  Number cantidad
+  String unidad
+  Number costo
+  Date ultcompra
+  Number proveedor
+  String provenom
+  Number estado
+  ObjectId[] offer (ref: Offers)
+  Number historico
+  Number sugerida
+  Boolean send48
+  Boolean send72
+  Date createdAt
+  Date updatedAt
+}
+
+class Uploads {
+  String fileType
+  String originalName
+  String filename
+  String fileId
+  Date createdAt
+  String usuario
+  Number offer
+  Date updatedAt
+}
+
+class SettingScorings {
+  Number codigo
+  String nombre
+  Number peso
+  String variable
+  Boolean activo
+  Date createdAt
+  Date updatedAt
+}
+
+class Suppliers {
+  Number codigo
+  String nombre
+  String usuario
+  String domicilio
+  String telefono
+  Number c_postal
+  String localidad
+  String provincia
+  String pais
+  Number desempeno
+  Date ultcompra
+  ObjectId[] upload (ref: Uploads)
+  Boolean activo
+  String fantasia
+  String actividad
+  String correspondencia
+  String cuentacbu
+  String CUIT
+  String IIBB
+  Boolean retIIBBSF
+  Number aliretIIBBSF
+  String motiexenIIBBSF
+  Boolean retIIBBMI
+  Number aliretIIBBMI
+  String motiexenIIBBMI
+  Boolean retGAN
+  Number aliretGAN
+  String motiexenGAN
+  Date createdAt
+  Date updatedAt
+}
+
+class Samples {
+  Number muestra
+  String usuario
+  String email
+  Number proveedor
+  String provenom
+  Date fecha
+  Number producto
+  String descrip
+  Number cantidad
+  String unidad
+  Date analisis
+  String userlab
+  Number resultado
+  Number estado
+  String detalle
+  Date createdAt
+  Date updatedAt
+}
+
+class Myproducts {
+  String usuario
+  Number proveedor
+  Number codigo
+  String descrip
+  String rubro
+  String subrubro
+  String detaeng
+  String rubroeng
+  String subrubeng
+  Date createdAt
+  Date updatedAt
+}
+
+class Help {
+  Number orden
+  String grupo
+  String grupoeng
+  String pregunta
+  String preguntaeng
+  String respuesta
+  String respuestaeng
+  Boolean activo
+  Date createdAt
+  Date updatedAt
+}
+
+class MailsToSuppliers {
+  String licitacion
+  Number producto
+  String descrip
+  Number cantidad
+  String unidad
+  String fecha
+  String usuario
+  Number proveedor
+  String provenom
+  String email
+  String from
+  String to
+  String bcc
+  String subject
+  String link
+  String tipo
+  Number cantOffer
+  Number precOffer
+  String moneda
+  String unidOffer
+  String incoterm
+  Number entrega
+  Number financiacion
+  Date createdAt
+  Date updatedAt
+}
+
+class Products {
+  Number codigo
+  String descrip
+  String unidad
+  String rubro
+  String subrubro
+  Number costo
+  Date ultcompra
+  Number proveedor
+  String provenom
+  Number precio
+  Boolean activo
+  Number historico
+  String detaeng
+  String rubroeng
+  String subrubeng
+  String caracteris
+  String caracteriseng
+  Number rankcontrib
+  String link
+  Date createdAt
+  Date updatedAt
+}
+
+class Offers {
+  Number oferta
+  String licitacion
+  String licitacion_id
+  String usuario
+  String email
+  Number proveedor
+  String provenom
+  Date fecha
+  Date finaliza
+  Number producto
+  String descrip
+  Number cantidad
+  String unidad
+  Number costo
+  Number precio
+  String incoterm
+  Number entrega
+  Number estado
+  String detalle
+  Number scoreProveedor
+  Number scorePrecio
+  Number scoreEntrega
+  Number scoreCantidad
+  Number scoring
+  Number financiacion
+  Number scoreFinanciacion
+  Number scoreRanking
+  Number precioPesos
+  Number cotizacion
+  Number desempeno
+  ObjectId[] upload (ref: Uploads)
+  String observacion
+  String lugarEntrega
+  Date createdAt
+  Date updatedAt
+}
+
+' Associations inferred from schema `ref` fields
+Tenders --> Products : producto 
+Samples --> Products : producto
+Samples --> Suppliers : proveedor
+Samples --> Users : usuario
+Suppliers --> Uploads : upload
+Suppliers --> Users : usuario
+Offers --> Users : usuario
+Offers --> Tenders : licitacion_id
+Offers --> Suppliers : proveedor
+Offers --> Products : producto
+Offers --> Uploads : upload
+Myproducts --> Suppliers : proveedor
+Myproducts --> Users : usuario
+Myproducts --> Products : codigo
+MailsToSuppliers --> Suppliers : proveedor
+MailsToSuppliers --> Users : usuario
+MailsToSuppliers --> Products : producto
+MailsToSuppliers --> Tenders : licitacion
+
+
+@enduml

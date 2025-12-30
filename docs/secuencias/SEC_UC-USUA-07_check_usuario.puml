@@ -1,0 +1,15 @@
+@startuml SecuenceCheckUsuario
+hide footbox
+
+boundary Sistema
+database "Base de datos" as BD
+
+Sistema->Sistema: Solicita obtener perfil del usuario
+Sistema->Sistema: Valida el token de sesión del usuario
+alt Token válido
+    Sistema->BD: Consulta perfil del usuario en la base de datos de Users
+    BD-->Sistema: Devuelve perfil del usuario
+else Token inválido
+    Sistema-->Sistema: Notifica error de autenticación y continua con el UC-AUTH-02	Logout / Revocación de session
+end
+@enduml

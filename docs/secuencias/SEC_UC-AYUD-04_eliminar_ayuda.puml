@@ -1,0 +1,17 @@
+@startuml SecuenceEliminarAyuda
+hide footbox
+
+actor Usuario
+participant Sistema
+Usuario->Sistema: Solicita Administrar Muestras
+Sistema->Usuario: Muestra la lista de Items de Ayuda disponibles
+Usuario->Sistema: Selecciona un Item de Ayuda y elige la opción "Eliminar"
+Sistema->Usuario: Muestra los datos del Item de Ayuda solicitada
+Usuario->Sistema: Confirma Eliminar el Item de Ayuda
+alt Eliminación exitosa
+    Sistema->Sistema: Elimina el Item de Ayuda en la base de datos
+    Sistema->Usuario: Confirma eliminación exitosa del Item de Ayuda
+else Error en la eliminación
+    Sistema->Usuario: Notifica error en la eliminación del Item de Ayuda
+end
+@enduml

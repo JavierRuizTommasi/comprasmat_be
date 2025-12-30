@@ -1,0 +1,15 @@
+@startuml
+entity "MyProducts" as MyProducts {
+  * _id : ObjectId
+  * usuario : String
+  * proveedor : Number
+  * codigo : Number
+  * descrip : String
+}
+
+' Relaciones relevantes
+MyProducts ||--|| Users : "usuario -> Users.usuario"
+MyProducts ||--|| Suppliers : "proveedor -> Suppliers.codigo"
+MyProducts ||--|| Products : "codigo -> Products.codigo (posible correspondencia)"
+
+@enduml

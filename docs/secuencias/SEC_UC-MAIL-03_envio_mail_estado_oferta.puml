@@ -1,0 +1,15 @@
+@startuml SecuenceEnvioMailEstadoOferta
+hide footbox
+
+participant Sistema
+participant Proveedor
+Sistema->Sistema: Consulta Ofertas relacionadas a una Solicitud
+alt Existen Ofertas relacionadas
+    Sistema->Sistema ++-- : Genera el cuerpo del mail con los datos de la Oferta su estado y ranking
+    Sistema->Proveedor : Envía un Mail al Proveedor
+    Sistema->Sistema: Registra el envío del mail en el sistema
+    Sistema->Sistema: Repite el proceso para cada Oferta relacionada
+else No existen Ofertas relacionadas
+    Sistema->Sistema: No realiza ninguna acción
+end
+@enduml

@@ -1,0 +1,13 @@
+@startuml SecuenceWelcomeUsuario
+hide footbox
+
+boundary "Sistema" as S
+database "Tabla Usuarios" as DB
+actor "Usuario" as U
+S -> S: Luego de la ejecución del UC-USUA-02 Registrar Usuario 
+S -> DB: Solicita obtener perfil del usuario
+DB --> S: Devuelve perfil del usuario
+S -> S: General el mail de Bienvenida con el link token para enviar al usuario
+S --> U: Envía mail de Bienvenida al Usuario con el link token para activar su cuenta
+
+@enduml

@@ -140,27 +140,27 @@ exports.welcome = (req, res, next) => {
     }
     // console.log(contentHTML)
   
-    // // Gmail
-    // const transporter = nodemailer.createTransport({
-    //     service: 'gmail',
-    //     auth: {
-    //         user: EMAIL.EMAIL,
-    //         pass: EMAIL.PASS
-    //     }
-    // })
-  
+    // Gmail
     const transporter = nodemailer.createTransport({
-        host: EMAIL.HOST,
-        port: EMAIL.PORT,
-        secure: EMAIL.SECURE, 
+        service: 'gmail',
         auth: {
             user: EMAIL.EMAIL,
             pass: EMAIL.PASS
-        },
-        tls: {
-          rejectUnauthorized: false
         }
     })
+  
+    // const transporter = nodemailer.createTransport({
+    //     host: EMAIL.HOST,
+    //     port: EMAIL.PORT,
+    //     secure: EMAIL.SECURE, 
+    //     auth: {
+    //         user: EMAIL.EMAIL,
+    //         pass: EMAIL.PASS
+    //     },
+    //     tls: {
+    //       rejectUnauthorized: false
+    //     }
+    // })
   
     if (newUser.language == 'es') {
         mailTitu = 'PROAGRO - Activación cuenta de Usuario Proveedor' 
@@ -178,7 +178,7 @@ exports.welcome = (req, res, next) => {
     // }
 
     const mailOptions = {
-        from: '"Proagro contacto" <proagro@neocore.com.ar>', 
+        from: '"Proagro contacto" <sistemas.neocore@gmail.com>', 
         to: newUser.email,
         bcc: EMAIL.EMAIL_AUTORIZ,
         subject: mailTitu,
@@ -192,8 +192,8 @@ exports.welcome = (req, res, next) => {
     
     await transporter.sendMail(mailOptions, function(error, info){
         if (error) {
-            console.log('Error'. error.message)
-            res.json({ message: error.message })
+            console.log('Error'. error)
+            res.json({ message: error})
         } else {
             console.log('Email sent', info.response)
             // res.send({ Email: info.response})

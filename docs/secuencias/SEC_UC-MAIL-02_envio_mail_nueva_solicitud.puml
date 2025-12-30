@@ -1,0 +1,16 @@
+@startuml SecuenceEnvioMailNuevaSolicitud
+hide footbox
+
+participant Sistema
+participant Proveedor
+Sistema->Sistema: Consulta si existen nuevas Solicitudes
+alt Existen nuevas Solicitudes
+    Sistema->Sistema ++ : Consulta la lista de Proveedores asociados al Producto de la Nueva Solicitud
+    Sistema->Sistema -- : Genera el cuerpo del mail con los datos de la Nueva Solicitud
+    Sistema->Proveedor : Envía un Mail a cada Proveedor
+    Sistema->Sistema: Registra el envío del mail en el sistema
+    Sistema->Sistema --: Repite el proceso para cada Solicitud nueva
+else No existen nuevas Solicitudes
+    Sistema->Sistema: No realiza ninguna acción
+end
+@enduml

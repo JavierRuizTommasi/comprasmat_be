@@ -1,0 +1,7 @@
+@startuml ColaboracionSecuenceAdministrarProveedores
+hide footbox
+
+participant "Usuario" as 1
+
+
+@enduml

@@ -1,0 +1,7 @@
+@startuml SecuenceGeneraSolicitudCompra
+hide footbox
+
+Actor "Encargado de Compras" as Usuario
+boundary "Sistema Presea" as Sistema
+Usuario->Sistema: Generar Solicitu de compra de insumo
+@enduml

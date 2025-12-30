@@ -1,0 +1,15 @@
+@startuml
+class Myproducts {
+  String usuario
+  Number proveedor
+  Number codigo
+  String descrip
+  String rubro
+  String subrubro
+  String detaeng
+  String rubroeng
+  String subrubeng
+  Date createdAt
+  Date updatedAt
+}
+@enduml

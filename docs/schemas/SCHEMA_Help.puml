@@ -1,0 +1,14 @@
+@startuml
+class Help {
+  Number orden
+  String grupo
+  String grupoeng
+  String pregunta
+  String preguntaeng
+  String respuesta
+  String respuestaeng
+  Boolean activo
+  Date createdAt
+  Date updatedAt
+}
+@enduml

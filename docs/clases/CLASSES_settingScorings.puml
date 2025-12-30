@@ -1,0 +1,19 @@
+@startuml
+class SettingScorings {
+  * _id : ObjectId
+  * codigo : Number
+  * nombre : String
+  * peso : Number
+  * variable : String
+  * activo : Boolean  + createSettingScoring(req,res): void
+  + deleteSettingScoring(req,res): void
+  + getSettingScoring(req,res): void
+  + getSettingScorings(req,res): void
+  + udpateSettingScoring(req,res): void
+
+}
+
+' Relaciones relevantes
+SettingScorings ||..|| Suppliers : "criterios aplicados a proveedores (lógica externa)"
+
+@enduml

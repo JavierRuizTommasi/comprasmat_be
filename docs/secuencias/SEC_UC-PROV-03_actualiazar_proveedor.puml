@@ -1,0 +1,18 @@
+@startuml SecuenceActualizarProveedores
+hide footbox
+
+actor Usuario
+participant Sistema
+Usuario->Sistema: Solicita administrar proveedores
+Sistema->Usuario: Muestra la lista de los proveedores almacenados
+Usuario->Sistema: Selecciona actualizar un proveedor
+Sistema->Sistema: Consulta los datos del proveedor seleccionado
+Sistema->Usuario: Muestra los datos del proveedor seleccionado
+Usuario->Sistema: actualiza los datos del proveedor y selecciona Guardar
+alt Actualización exitosa
+    Sistema->Sistema: Actualiza los datos del proveedor en la base de datos
+    Sistema->Usuario: Confirma actualización exitosa del proveedor
+else Error en actualización
+    Sistema->Usuario: Notifica error en la actualización del proveedor
+end
+@enduml

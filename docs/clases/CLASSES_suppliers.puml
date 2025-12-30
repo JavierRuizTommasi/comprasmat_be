@@ -1,0 +1,27 @@
+@startuml
+class Suppliers {
+  * _id : ObjectId
+  * codigo : Number
+  * nombre : String
+  * usuario : String
+  * provincia : String
+  * activo : Boolean  + assignUpload(req,res): void
+  + createSupplier(req,res): void
+  + deleteSupplier(req,res): void
+  + getMySupplier(req,res): void
+  + getSupplier(req,res): void
+  + getSuppliers(req,res): void
+  + removeUpload(req,res): void
+  + udpateSupplier(req,res): void
+
+}
+
+' Relaciones relevantes
+Suppliers --> Products : "codigo -> Products.proveedor"
+Suppliers --> MyProducts : "codigo -> MyProducts.proveedor"
+Suppliers --> Offers : "codigo -> Offers.proveedor"
+Suppliers --> Samples : "codigo -> Samples.proveedor"
+Suppliers --> Uploads : "supplier uploads"
+Suppliers --> SettingScorings : "evaluación (lógica externa)"
+
+@enduml

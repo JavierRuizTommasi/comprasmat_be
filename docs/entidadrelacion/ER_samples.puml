@@ -1,0 +1,18 @@
+@startuml
+entity "Samples" as Samples {
+  * _id : ObjectId
+  * muestra : Number
+  * usuario : String
+  * proveedor : Number
+  * producto : Number
+  * cantidad : Number
+  * estado : Number
+  * fecha : Date
+}
+
+' Relaciones relevantes
+Samples }o--|| Users : "usuario -> Users.usuario"
+Samples }o--|| Suppliers : "proveedor -> Suppliers.codigo"
+Samples }o--|| Products : "producto -> Products.codigo"
+
+@enduml

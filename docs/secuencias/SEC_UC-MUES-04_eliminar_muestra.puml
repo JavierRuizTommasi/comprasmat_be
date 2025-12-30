@@ -1,0 +1,17 @@
+@startuml SecuenceEliminarMuestra
+hide footbox
+
+actor Usuario
+participant Sistema
+Usuario->Sistema: Solicita Administrar Muestras
+Sistema->Usuario: Muestra la lista de Muestras relacionadas al Usuario
+Usuario->Sistema: Selecciona una Muestra y elige la opción "Eliminar"
+Sistema->Usuario: Muestra los datos de la Muestra solicitada
+Usuario->Sistema: Confirma Eliminar la Muestra
+alt Actualización exitosa
+    Sistema->Sistema: Elimina la Muestra en la base de datos
+    Sistema->Usuario: Confirma eliminación exitosa de la Muestra
+else Error en actualización
+    Sistema->Usuario: Notifica error en la eliminación de la Muestra
+end
+@enduml

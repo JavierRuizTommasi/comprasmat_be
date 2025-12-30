@@ -1,0 +1,19 @@
+@startuml SecuenceEliminarMyProducto
+hide footbox
+
+actor Usuario
+participant Sistema
+Usuario->Sistema: Solicita administrar Mis productos
+Sistema->Sistema: Consulta base de datos 
+Sistema->Usuario: Muestra la lista de los productos asiociados a la cuenta del usuario
+Usuario->Sistema: Selecciona "Eliminar un producto de mi lista"
+Sistema->Sistema: Consulta detalles del producto seleccionado
+Sistema->Usuario: Muestra los datos del producto solicitado
+Usuario->Sistema: Selecciona Eliminar
+alt Eliminación exitosa
+    Sistema->Sistema: Actualiza elimina el producto de la lista asociada a la cuenta
+    Sistema->Usuario: Confirma eliminación exitosa del producto
+else Error en eliminación
+    Sistema->Usuario: Notifica error en la eliminación del producto
+end
+@enduml

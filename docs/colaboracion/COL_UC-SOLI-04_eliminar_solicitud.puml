@@ -1,0 +1,18 @@
+@startuml ColaboracionSecuenceEliminarSolicitudes
+hide footbox
+
+actor "Usuario" as (1)
+actor "Sistema" as (2)
+actor "Base de Datos" as (3)
+
+1 --> 2 : Solicita eliminar \nuna Solicitud
+2 --> 3 : Solicita Datos de la \nSolicitud seleccionada
+2 --> 1 : Muestra Datos de \la Solicitud seleccionada
+1 --> 2 : Selecciona Eliminar
+2 --> 3 : Envía actualización Estado \n De Baja
+3 --> 2 : Confirma resultado de la eliminación
+2 --> 1 : Notifica resultado \nde la eliminación
+2 --> 1 : Notifica por mail eliminación \nde Solicitud a Proveedores
+
+
+@enduml

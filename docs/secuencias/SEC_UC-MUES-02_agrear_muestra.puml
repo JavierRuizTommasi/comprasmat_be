@@ -1,0 +1,19 @@
+@startuml SecuenceAgregarMuestra
+hide footbox
+
+actor Usuario
+participant Sistema
+Usuario->Sistema: Solicita Administrar Muestras
+Sistema->Sistema: Consulta base de datos las Muestras relacionadas al Usuario
+Sistema-->Usuario: Devuelve lista de Muestras
+Usuario->Sistema: Selecciona "Agregar" una nueva Muestra"
+Sistema->Sistema: Presenta el formulario de nueva Muestra
+Usuario->Sistema: Completa formulario y envía datos
+Sistema->Sistema: Valida datos de la Muestra
+alt Datos válidos
+  Sistema->Sistema: Almacena la nueva Muestra en la base de datos
+  Sistema->Usuario: Confirma agregado exitoso de la Muestra
+else Datos inválidos
+  Sistema->Usuario: Notifica errores en el formulario
+end
+@enduml

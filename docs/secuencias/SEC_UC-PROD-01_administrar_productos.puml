@@ -1,0 +1,16 @@
+@startuml SecuenceAdministrarProducts
+hide footbox
+
+actor Usuario
+boundary Sistema
+database "Base de datos" as BD
+
+Usuario->Sistema: Solicita Aminitrar productos
+Sistema->BD: Consulta base de datos de Products
+BD-->Sistema: Devuelve lista de productos
+Sistema-->Usuario: Devuelve lista de productos
+Usuario->Sistema: Selecciona un producto
+Sistema->Sistema: Consulta detalles del producto
+Sistema-->Usuario: Muestra detalles del producto
+  
+@enduml

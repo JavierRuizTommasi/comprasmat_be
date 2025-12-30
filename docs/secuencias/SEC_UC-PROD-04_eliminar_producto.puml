@@ -1,0 +1,17 @@
+@startuml SecuenceEliminarProducto
+hide footbox
+
+actor Usuario
+participant Sistema
+Usuario->Sistema: Solicita administrar productos
+Sistema->Usuario: Muestra la lista de los productos almacenados
+Usuario->Sistema: Selecciona eliminar un producto
+Sistema->Usuario: Muestra los datos del producto solicitado
+Usuario->Sistema: Selecciona Eliminar
+alt Actualización exitosa
+    Sistema->Sistema: Actualiza el estado del producto a De Baja en la base de datos
+    Sistema->Usuario: Confirma actualización exitosa de los datos del producto
+else Error en actualización
+    Sistema->Usuario: Notifica error en la actualización de los datos del producto
+end
+@enduml

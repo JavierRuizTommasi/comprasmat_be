@@ -1,0 +1,12 @@
+@startuml ColaboracionSecuenceExportarTablas
+hide footbox
+
+actor "Sistema" as (1)
+actor "Interfaz" as (2)
+actor "Base" as (3)
+
+1 --> 2: Generar archivos json de las tablas
+2 --> 3: Exportar tablas a Base de Datos
+3 --> 3: Base de Datos actualizada
+
+@enduml

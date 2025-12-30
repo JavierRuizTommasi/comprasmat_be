@@ -1,0 +1,24 @@
+@startuml
+class Samples {
+  * _id : ObjectId
+  * muestra : Number
+  * usuario : String
+  * proveedor : Number
+  * producto : Number
+  * cantidad : Number
+  * estado : Number
+  * fecha : Date  + createSamples(req,res): void
+  + deleteSamples(req,res): void
+  + findMySamples(req,res): void
+  + getSample(req,res): void
+  + getSamples(req,res): void
+  + udpateSamples(req,res): void
+
+}
+
+' Relaciones relevantes
+Samples --> Users : "usuario -> Users.usuario"
+Samples --> Suppliers : "proveedor -> Suppliers.codigo"
+Samples --> Products : "producto -> Products.codigo"
+
+@enduml

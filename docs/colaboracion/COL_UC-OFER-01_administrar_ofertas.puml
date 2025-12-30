@@ -1,0 +1,17 @@
+@startuml ColaboracionSecuenceAdministrarOfertas
+hide footbox
+
+actor "Usuario" as (1)
+actor "Sistema" as (2)
+actor "Base de Datos" as (3)
+
+1 --> 2: Solicita administrar \nOfertas
+2 --> 3: Consulta Ofertas
+3 --> 2: Devuelve lista \nde Ofertas
+2 --> 1: Muestra la lista de \nlos Ofertas almacenados
+1 --> 2: Selecciona consultar \nuna Oferta
+2 --> 3: Consulta detalles \nde la Oferta seleccionado
+3 --> 2: Devuelve datos de la \nOferta solicitado
+2 --> 1: Muestra los datos \nde la Oferta solicitado
+
+@enduml

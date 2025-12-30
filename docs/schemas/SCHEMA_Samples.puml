@@ -1,0 +1,21 @@
+@startuml
+class Samples {
+  Number muestra
+  String usuario
+  String email
+  Number proveedor
+  String provenom
+  Date fecha
+  Number producto
+  String descrip
+  Number cantidad
+  String unidad
+  Date analisis
+  String userlab
+  Number resultado
+  Number estado
+  String detalle
+  Date createdAt
+  Date updatedAt
+}
+@enduml

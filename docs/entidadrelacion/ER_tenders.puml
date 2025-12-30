@@ -1,0 +1,19 @@
+@startuml
+entity "Tenders" as Tenders {
+  * _id : ObjectId
+  * licitacion : String
+  * fecha : Date
+  * finaliza : Date
+  * producto : Number
+  * cantidad : Number
+  * unidad : String
+  * costo : Number
+  * estado : Number
+}
+
+' Relaciones relevantes
+Tenders ||--o{ Offers : "Tenders.offer -> Offers._id (lista de ofertas)"
+Tenders }o--|| Products : "producto -> Products.codigo"
+Tenders }o--|| Suppliers : "proveedor sugerido"
+
+@enduml

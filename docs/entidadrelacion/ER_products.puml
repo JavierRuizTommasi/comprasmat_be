@@ -1,0 +1,19 @@
+@startuml
+entity "Products" as Products {
+  * _id : ObjectId
+  * codigo : Number
+  * descrip : String
+  * unidad : String
+  * rubro : String
+  * proveedor : Number
+  * precio : Number
+  * activo : Boolean
+}
+
+' Relaciones relevantes
+Products ||--o{ Offers : "codigo -> Offers.producto"
+Products ||--o{ Samples : "codigo -> Samples.producto"
+Products ||--|| Suppliers : "proveedor -> Suppliers.codigo"
+Products ||--o{ MyProducts : "codigo -> MyProducts.codigo"
+
+@enduml

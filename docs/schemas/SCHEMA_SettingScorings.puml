@@ -1,0 +1,11 @@
+@startuml
+class SettingScorings {
+  Number codigo
+  String nombre
+  Number peso
+  String variable
+  Boolean activo
+  Date createdAt
+  Date updatedAt
+}
+@enduml

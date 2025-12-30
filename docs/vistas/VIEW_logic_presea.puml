@@ -1,0 +1,78 @@
+@startuml VIEW_logic_presea
+'title Arquitectura en Capas - ERP Presea (NeuralSoft)
+
+skinparam DefaultTextAlignment center
+
+' ==========================================================
+'  Capa 1 - Presentación
+' ==========================================================
+
+package "Capa de Presentación(UI Web / Escritorio)" as CapaPresentacion {
+    rectangle "Formularios Pantallas Dashboards Validaciones básicas" as UI
+}
+
+'
+
+' ==========================================================
+'  Capa 2 - Aplicación
+' ==========================================================
+
+package "Capa de Aplicación (Orquestación / Casos de Uso)" as CapaAplicacion {
+    rectangle "Controladores Servicios de Aplicación Gestión de Sesión y Permisos" as AppLogic
+}
+
+' ==========================================================
+'  Capa 3 - Dominio
+' ==========================================================
+
+package "Capa de Dominio (Reglas de Negocio ERP)" as CapaDominio {
+    rectangle "Entidades ERP Value Objects Servicios de Dominio Agregados" as DomainLogic
+}
+
+
+' ==========================================================
+'  Capa 4 - Integración
+' ==========================================================
+
+package "Capa de Integración (APIs / Servicios externos)" as CapaIntegracion {
+    rectangle "AFIP Servicios Bancarios Bus de Mensajes Middleware" as IntegrationLayer
+}
+
+
+' ==========================================================
+'  Capa 5 - Persistencia
+' ==========================================================
+
+package "Capa de Persistencia (Repositorios / ORM)" as CapaPersistencia {
+    rectangle "Repositorios Mapeo ORM Transacciones" as Repo
+}
+
+
+' ==========================================================
+'  Capa 6 - Interfaces Exportación a ComprasMAT
+' ==========================================================
+
+package "Capa Repositorio \nArchivos Exportación" as CapaExportacion {
+    rectangle "Archivos Json Txt \n MongoDB Procesos Batch" as ExportDB
+}
+
+' ==========================================================
+'  Capa 7 - Base de Datos
+' ==========================================================
+
+package "Capa de Base de Datos (Visal \nFoxPro / SQL / Tablas / SP)" as CapaBD {
+    rectangle "Tablas ERP Stored Procedures \nsAuditoría Índices" as DB
+}
+
+' ==========================================================
+' Relaciones verticales
+' ==========================================================
+
+UI --> AppLogic
+AppLogic --> DomainLogic
+DomainLogic --> IntegrationLayer
+DomainLogic --> Repo
+Repo --> ExportDB
+Repo --> DB
+
+@enduml

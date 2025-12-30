@@ -1,0 +1,24 @@
+@startuml
+class Products {
+  * _id : ObjectId
+  * codigo : Number
+  * descrip : String
+  * unidad : String
+  * rubro : String
+  * proveedor : Number
+  * precio : Number
+  * activo : Boolean  + createProduct(req,res): void
+  + deleteProduct(req,res): void
+  + getProduct(req,res): void
+  + getProducts(req,res): void
+  + udpateProduct(req,res): void
+
+}
+
+' Relaciones relevantes
+Products --> Offers : "codigo -> Offers.producto"
+Products --> Samples : "codigo -> Samples.producto"
+Products --> Suppliers : "proveedor -> Suppliers.codigo"
+Products --> MyProducts : "codigo -> MyProducts.codigo"
+
+@enduml

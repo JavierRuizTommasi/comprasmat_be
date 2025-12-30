@@ -1,0 +1,31 @@
+@startuml
+class Users {
+  * _id : ObjectId
+  * usuario : String
+  * nombre : String
+  * email : String
+  * perfil : Number
+  * proveedor : Number
+  + createUser(): void  + autenticateUser(req,res): void
+  + checkUser(req,res): void
+  + datosUser(req,res): void
+  + deleteUser(req,res): void
+  + getUser(req,res): void
+  + getUsers(req,res): void
+  + loginUser(req,res): void
+  + logoutUser(req,res): void
+  + udpateLang(req,res): void
+  + udpatePass(req,res): void
+  + udpateUser(req,res): void
+  + unsubscribe(req,res): void
+  + welcome(req,res): void
+
+}
+
+' Relaciones relevantes
+' Users (usuario) referenced in Offers, Samples, Uploads
+Users --> Offers : "usuario (Offers.usuario -> Users.usuario)"
+Users --> Samples : "usuario"
+Users --> Uploads : "usuario"
+
+@enduml

@@ -1,0 +1,10 @@
+@startuml SecuenceSubirArchivos
+hide footbox
+
+actor Usuario
+participant Sistema
+Usuario->Sistema: Selecciona Archivos adjuntos para subir a la Base de Datos
+Sistema->Sistema ++: Sube los Archivos a la Base de Datos
+Sistema-->Usuario --: Confirma subida exitosa de Archivos
+  
+@enduml

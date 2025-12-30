@@ -1,0 +1,13 @@
+@startuml SecuenceAdministrarProveedores
+hide footbox
+
+actor Usuario
+participant Sistema
+Usuario->Sistema: Solicita Aminitrar proveedores
+Sistema->Sistema: Consulta base de datos
+Sistema-->Usuario: Devuelve lista de proveedores
+Usuario->Sistema: Selecciona un proveedor
+Sistema->Sistema: Consulta detalles del proveedor
+Sistema-->Usuario: Muestra detalles del proveedor
+  
+@enduml

@@ -1,0 +1,23 @@
+@startuml
+class MailsToSuppliers {
+  * _id : ObjectId
+  * licitacion : String
+  * producto : Number
+  * proveedor : Number
+  * email : String
+  * fecha : String
+  * usuario : String  + createMailsToSupplier(req,res): void
+  + createMailsToSuppliers(req,res): void
+  + deleteMailsToSupplier(req,res): void
+  + getMailsToSuppliers(req,res): void
+  + getmailsToSupplier(req,res): void
+  + sendMailsToSuppliers(req,res): void
+  + udpateMailsToSupplier(req,res): void
+
+}
+
+' Relaciones relevantes
+MailsToSuppliers --> Suppliers : "proveedor -> Suppliers.codigo"
+MailsToSuppliers --> Products : "producto -> Products.codigo"
+
+@enduml

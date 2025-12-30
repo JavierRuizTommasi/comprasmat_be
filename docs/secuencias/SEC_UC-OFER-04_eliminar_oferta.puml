@@ -1,0 +1,23 @@
+@startuml SecuenceEliminarOfertas
+hide footbox
+
+actor Usuario
+participant Sistema
+Usuario->Sistema: Solicita Administrar Ofertas
+Sistema->Sistema: Consulta base de datos 
+Sistema-->Usuario: Devuelve lista de Ofertas por Solicitud asociadas a la cuenta del Usuario Proveedor
+Usuario->Sistema: Selecciona una Oferta y elige "Eliminar" Oferta
+Sistema->Sistema: Muestra formulario con los datos de la Oferta y solicita confirmación de eliminación
+alt Confirma la eliminación
+  Sistema->Sistema: Valida datos de la Oferta
+  alt Datos válidos
+    Sistema->Sistema: Elimina la Oferta en la base de datos
+    Sistema->Usuario: Notifica al Usuario de la eliminación exitosa de la Oferta
+    Sistema->Sistema: Ejecuta el UC-OFER-05 Actualizar Ranking de Ofertas de la Solicitud asociada
+  else Datos inválidos
+    Sistema->Usuario: Notifica errores en el formulario
+  end
+else Cancela la eliminación
+  Sistema->Usuario: Cancela el proceso de eliminación
+end
+@enduml

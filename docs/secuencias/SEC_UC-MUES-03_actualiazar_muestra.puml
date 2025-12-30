@@ -1,0 +1,18 @@
+@startuml SecuenceActualizarMuestra
+hide footbox
+
+actor Usuario
+participant Sistema
+Usuario->Sistema: Solicita administrar Muestras
+Sistema->Usuario: Muestra la lista de las Muestras almacenados relacionadas al Usuario
+Usuario->Sistema: Selecciona actualizar una Muestra
+Sistema->Sistema: Consulta los datos de la Muestra seleccionada
+Sistema->Usuario: Muestra los datos de la Muestra seleccionada
+Usuario->Sistema: actualiza los datos de la Muestra y selecciona Guardar
+alt Actualización exitosa
+    Sistema->Sistema: Actualiza los datos de ls Muestra en la base de datos
+    Sistema->Usuario: Confirma actualización exitosa de ls Muestra
+else Error en actualización
+    Sistema->Usuario: Notifica error en la actualización de la Muestra
+end
+@enduml

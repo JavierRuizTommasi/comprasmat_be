@@ -1,0 +1,10 @@
+@startuml ColaboracionSecuenceLogoutUsuario
+hide footbox
+
+actor "Usuario" as (1)
+actor "Sistema" as (2)
+
+1 --> 2: Solicita salir del sistema
+2 --> 1: Elimina el token y devuelve \na la ventana principal...
+
+@enduml

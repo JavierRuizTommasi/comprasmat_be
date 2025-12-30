@@ -1,0 +1,9 @@
+@startuml SecuenceConsultarAyuda
+hide footbox
+
+actor Usuario
+participant Sistema
+Usuario -> Sistema: Solicita un Item de Ayuda para consultar
+Sistema -> Sistema: Consulta el Item en la Tabla la Ayuda
+Sistema --> Usuario: Devuelve los datos del Item de Ayuda 
+@enduml

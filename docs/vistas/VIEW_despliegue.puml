@@ -1,0 +1,93 @@
+@startuml VIEW_despliegue
+'Title Vista de Despliegue - Angular + Node.js + MongoDB Atlas
+
+skinparam node {
+  BackgroundColor #F6F7F9
+  BorderColor #1F2E3D
+  RoundCorner 15
+}
+
+skinparam cloud {
+  BackgroundColor #FFFFFF
+  BorderColor #1F2E3D
+}
+
+skinparam database {
+  BackgroundColor #FFFFFF
+  BorderColor #1F2E3D
+}
+
+skinparam artifact {
+  BackgroundColor #E7EBF0
+  BorderColor #1F2E3D
+}
+
+skinparam ArrowColor #1F2E3D
+
+' ==========================================================
+'  Nodo Cliente (Browser)
+' ==========================================================
+
+node "Cliente\n(Browser Web)" as Browser {
+    artifact "Angular App\n(index.html, JS, CSS)" as AngularApp
+}
+
+' ==========================================================
+'  Hosting Frontend (CDN / Web Server)
+' ==========================================================
+
+node "Hosting Frontend\n(CDN / Nginx / Static Server)" as FrontHost {
+    artifact "Build Angular\n(dist/)" as AngularBuild
+}
+
+' ==========================================================
+'  Servidor Backend (Node.js + Express)
+' ==========================================================
+
+node "Servidor Backend\n(Node.js + Express)" as Backend {
+    artifact "API REST\n(Express Controllers)" as ExpressAPI
+    artifact "Servicios de Negocio" as Services
+}
+
+' ==========================================================
+'  Capa de Persistencia (Mongoose)
+' ==========================================================
+
+node "Persistencia\n(Mongoose ODM)" as ODM {
+    artifact "Modelos / Schemas\nMongoose" as MongooseModels
+}
+
+' ==========================================================
+'  MongoDB Atlas (Cloud)
+' ==========================================================
+
+cloud "MongoDB Atlas" as Atlas {
+    database "Cluster MongoDB\nColecciones / Documentos" as MongoCluster
+}
+
+' ==========================================================
+'  Servicios Externos (Opcionales)
+' ==========================================================
+
+cloud "Servicios Externos" as Ext {
+    artifact "Auth0 / JWT" as Auth
+    artifact "Email API\n(SendGrid/Mailgun)" as EmailAPI
+    artifact "Cloud Storage\n(AWS S3 / GCP Storage)" as CloudStorage
+}
+
+' ==========================================================
+' Relaciones
+' ==========================================================
+
+AngularApp --> AngularBuild : Carga inicial\nHTTP/HTTPS
+Browser --> ExpressAPI : Peticiones REST\nHTTP/HTTPS
+ExpressAPI --> Services : Invocación lógica interna
+Services --> MongooseModels : Operaciones CRUD
+MongooseModels --> MongoCluster : Lectura/Escritura\nDriver MongoDB
+
+' Integraciones externas
+ExpressAPI --> Auth : Validación JWT/OAuth2
+ExpressAPI --> EmailAPI : Envío de Emails
+ExpressAPI --> CloudStorage : Upload/Download
+
+@enduml

@@ -1,0 +1,19 @@
+@startuml
+entity "Suppliers" as Suppliers {
+  * _id : ObjectId
+  * codigo : Number
+  * nombre : String
+  * usuario : String
+  * provincia : String
+  * activo : Boolean
+}
+
+' Relaciones relevantes
+Suppliers ||--o{ Products : "codigo -> Products.proveedor"
+Suppliers ||--o{ MyProducts : "codigo -> MyProducts.proveedor"
+Suppliers ||--o{ Offers : "codigo -> Offers.proveedor"
+Suppliers ||--o{ Samples : "codigo -> Samples.proveedor"
+Suppliers ||--o{ Uploads : "supplier uploads"
+Suppliers ||--|| SettingScorings : "evaluación (lógica externa)"
+
+@enduml

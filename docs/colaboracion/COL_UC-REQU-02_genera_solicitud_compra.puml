@@ -1,0 +1,7 @@
+@startuml ColaboracionSecuenceGeneraSolicitudCompra
+hide footbox
+
+participant "Sistema" as 1
+
+
+@enduml

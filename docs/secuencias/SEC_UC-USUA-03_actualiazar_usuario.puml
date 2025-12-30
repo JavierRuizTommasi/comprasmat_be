@@ -1,0 +1,22 @@
+@startuml SecuenceActualizarUsuario
+hide footbox
+
+actor Usuario
+boundary Sistema
+database BaseDeDatos
+
+Usuario->Sistema: Solicita administrar usuarios
+Sistema->BaseDeDatos: Consulta base de datos de usuarios
+BaseDeDatos-->Sistema: Devuelve lista de usuarios
+Sistema->Usuario: Muestra la lista de los usuarios almacenados
+Usuario->Sistema: Selecciona actualizar un usuario
+Sistema->Usuario: Muestra los datos del usuario solicitado
+Usuario->Sistema: actualiza los datos del usuario y selecciona Guardar
+Sistema->BaseDeDatos: Envía los datos actualizados del usuario
+alt Actualización exitosa
+    Sistema->Sistema: Actualiza los datos del usuario en la base de datos
+    Sistema->Usuario: Confirma actualización exitosa de los datos del usuario
+else Error en actualización
+    Sistema->Usuario: Notifica error en la actualización de los datos del usuario
+end
+@enduml

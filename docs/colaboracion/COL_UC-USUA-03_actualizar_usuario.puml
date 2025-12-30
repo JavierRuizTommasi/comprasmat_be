@@ -1,0 +1,19 @@
+@startuml ColaboracionSecuenceActualizarUsuario
+hide footbox
+
+actor "Usuario" as (1)
+actor "Sistema" as (2)
+actor "BaseDeDatos" as (3)
+
+1 --> 2: Solicita \nadministrar \nusuarios
+2 --> 3: Consulta base de \ndatos de usuarios
+3 --> 2: Devuelve lista de \nusuarios
+2 --> 1: Muestra la lista de \nlos usuarios almacenados
+1 --> 2: Selecciona \nactualizar\n un usuario
+2 --> 1: Muestra los datos \ndel usuario solicitado
+1 --> 2: Actualiza los datos \ndel usuario y \nselecciona Guardar
+2 --> 3: Envía los datos \nactualizados del usuario
+3 --> 2: Confirma resultado de \nla actualización del usuario
+2 --> 1: Notifica resultado de \nla actualización del usuario
+
+@enduml

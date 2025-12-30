@@ -1,0 +1,13 @@
+@startuml SecuenceAdministrarMails
+hide footbox
+
+actor Usuario
+participant Sistema
+Usuario->Sistema: Solicita Aminitrar Mails
+Sistema->Sistema: Consulta base de datos
+Sistema-->Usuario: Devuelve lista de Mails 
+Usuario->Sistema: Selecciona un Mail
+Sistema->Sistema: Consulta detalles del Mail
+Sistema-->Usuario: Muestra detalles del Mail
+  
+@enduml

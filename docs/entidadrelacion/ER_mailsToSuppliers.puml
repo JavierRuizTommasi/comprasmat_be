@@ -1,0 +1,16 @@
+@startuml
+entity "MailsToSuppliers" as MailsToSuppliers {
+  * _id : ObjectId
+  * licitacion : String
+  * producto : Number
+  * proveedor : Number
+  * email : String
+  * fecha : String
+  * usuario : String
+}
+
+' Relaciones relevantes
+MailsToSuppliers }o--|| Suppliers : "proveedor -> Suppliers.codigo"
+MailsToSuppliers }o--|| Products : "producto -> Products.codigo"
+
+@enduml

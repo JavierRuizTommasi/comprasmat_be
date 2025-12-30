@@ -1,0 +1,10 @@
+@startuml SecuenceAdministrarMyProducts
+hide footbox
+
+actor Usuario
+participant Sistema
+Usuario->Sistema: Solicita Aminitrar Mis Productos
+Sistema->Sistema: Consulta base de datos
+Sistema-->Usuario: Devuelve la lista de My Productos asociados a la cuenta del usuario
+  
+@enduml

@@ -1,0 +1,17 @@
+@startuml ColaboracionSecuenceAdministrarSolicitudes
+hide footbox
+
+actor "Usuario" as (1)
+actor "Sistema" as (2)
+actor "Base de Datos" as (3)
+
+1 --> 2 : Solicitar administrar \nSolicitudes
+2 --> 3 : Consulta base de datos \nde Solicitudes
+3 --> 2 : Devuelve lista \nde Solicitudes
+2 --> 1 : Muestra lista \nde Solicitudes
+1 --> 2 : Selecciona consultar \nuna Solicitud
+2 --> 3 : Consulta detalles \nde la Solicitud seleccionado
+3 --> 2 : Devuelve datos de la \nSolicitud solicitado
+2 --> 1 : Muestra los datos \nde la Solicitud solicitado
+
+@enduml

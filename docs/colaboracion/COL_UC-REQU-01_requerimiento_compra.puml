@@ -1,0 +1,11 @@
+@startuml ColaboracionRequerimientoCompraInsumo
+
+' Participantes
+actor "Encargado de Laboratorio" as (1)
+boundary "Sistema Presea" as (Sistema)
+
+' Mensajes numerados (típicos del diagrama de colaboración)
+1 --> Sistema : Generar requerimiento\nde compra de insumo
+
+
+@enduml

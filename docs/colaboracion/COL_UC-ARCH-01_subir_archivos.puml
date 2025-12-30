@@ -1,0 +1,7 @@
+@startuml ColaboracionSecuenceSubirArchivos
+hide footbox
+
+participant "Usuario" as 1
+
+
+@enduml

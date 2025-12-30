@@ -1,0 +1,26 @@
+@startuml
+class Users {
+  String usuario
+  String nombre
+  String email
+  String pass
+  Number perfil
+  Number proveedor
+  String contacto
+  String direccion
+  String ciudad
+  String pais
+  String telefono
+  Boolean activo
+  String language
+  String contacto2
+  String email2
+  String contacto3
+  String email3
+  String contacto4
+  String email4
+  String CUIT
+  Date createdAt
+  Date updatedAt
+}
+@enduml
