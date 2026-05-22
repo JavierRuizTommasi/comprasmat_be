@@ -25,8 +25,8 @@ module.exports = {
     PORT: process.env.PORT || 8080,
     DB: process.env.DATABASE_URL || 'mongodb://127.0.0.1:27017/prod',
     DBLogs: process.env.DATABASE_LOGS || 'logsProd',
-    CHECK_NEWTENDER: process.env.CHECK_NEWTENDER || 300000,
-    CHECK_1HORA: process.env.CHECK_1HORA || 3600000,
+    CHECK_NEWTENDER: process.env.CHECK_NEWTENDER || 30000, // 30 seconds
+    CHECK_1HORA: process.env.CHECK_1HORA || 3600000, // 1 hour
     URLAPI: process.env.URLAPI || 'http://localhost:8080/api/',
     URLHOME: process.env.URLHOME || 'http://localhost:4200',
 

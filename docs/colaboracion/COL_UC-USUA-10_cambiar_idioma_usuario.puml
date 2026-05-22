@@ -1,0 +1,14 @@
+@startuml ColaboracionSecuenceValidarUsuario
+hide footbox
+
+actor "Usuario" as (0)
+actor "Sistema" as (1)
+actor "Dase de Datos" as (2)
+
+0 --> 1: Cambia idioma de la página web
+1 --> 2: Solicita textos según \nel idioma seleccionado
+1 --> 2: Actualiza el idioma \nseleccionado del usuario \nen la base de datos
+2 --> 1: Devuelve los textos \nsegún el idioma \nseleccionado
+1 --> 0: Actualiza los textos de \nla página web según \nel idioma seleccionado
+
+@enduml

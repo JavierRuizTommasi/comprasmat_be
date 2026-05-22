@@ -167,18 +167,18 @@ exports.sendMailsToSuppliers = async (req, result) => {
                         contentHTML = `
                         <div style="display: flex;">
                             <img style="height: 57px; width: 95px; margin-right: 10px;" src="cid:logo"/>
-                            <h1 style="font:24px Helvetica,Arial,sans-serif; font-weight: bold; line-height:1.5;">Notificaci&oacute;n de Oferta recibida</h1>
+                            <h1 style="font:24px Helvetica,Arial,sans-serif; font-weight: bold; line-height:1.5;">Notificación de Oferta recibida</h1>
                         </div>
                         <br>
                         <p style="font:14px Helvetica,Arial,sans-serif;">Estimado Proveedor <strong>${mail.provenom}</strong> (Empresa: <strong>${mail.usuario})</strong>.</p>
-                        <p>En el d&iacute;a de hoy se registr&oacute; su offerta de Cotizaci&oacute;n para la Solicitud <strong># ${mail.licitacion}</strong> seg&uacute el siguiente detalle:</p>
+                        <p>En el día de hoy se registró su oferta de Cotización para la Solicitud <strong># ${mail.licitacion}</strong> según el siguiente detalle:</p>
                         <ul>
                             <li>Insumo: <strong>${mail.descrip}</strong></li>
                             <li>Cantidad: <strong>${mail.cantOffer} ${mail.unidOffer}</strong></li>
                             <li>Precio: <strong>${mail.precOffer} ${mail.moneda}</strong></li>
                             <li>Incoterm: <strong>${mail.incoterm}</strong></li>
-                            <li>Entrega: <strong>${mail.entrega} D&iacute;as</strong></li>
-                            <li>Finaciaci&oacute;n: <strong>${mail.financiacion} D&iacute;as</strong></li>
+                            <li>Entrega: <strong>${mail.entrega} Días</strong></li>
+                            <li>Finaciación: <strong>${mail.financiacion} Días</strong></li>
                         `
 
                         if (mail.link) {
@@ -191,7 +191,7 @@ exports.sendMailsToSuppliers = async (req, result) => {
                         </ul>
                         <p>Atte.</p>
                         <p>Departamento de Compras - Proagro</p>
-                        <p><h5 style="text-align:center">Haga click aqu&iacute; para <a href="${properties.URLAPI}/unsubscribe/${accessToken}">desuscribirse</a></h5></p>
+                        <p><h5 style="text-align:center">Haga click aquí para <a href="${properties.URLAPI}/unsubscribe/${accessToken}">desuscribirse</a></h5></p>
                         `
                     } else {
                         contentHTML = `
@@ -230,11 +230,11 @@ exports.sendMailsToSuppliers = async (req, result) => {
                         contentHTML = `
                         <div style="display: flex;">
                             <img style="height: 57px; width: 95px; margin-right: 10px;" src="cid:logo"/>
-                            <h1 style="font:24px Helvetica,Arial,sans-serif; font-weight: bold; line-height:1.5;">Notificaci&oacuten de Nueva Solicitud de Cotizaci&oacuten</h1>
+                            <h1 style="font:24px Helvetica,Arial,sans-serif; font-weight: bold; line-height:1.5;">Notificación de Nueva Solicitud de Cotización</h1>
                         </div>
                         <br>
                         <p style="font:14px Helvetica,Arial,sans-serif;">Estimado Proveedor <strong>${mail.provenom}</strong> (Empresa: <strong>${mail.usuario})</strong>.</p>
-                        <p>En el d&iacute;a de hoy se gener&oacute; la solicitud de Cotizaci&oacute;n <strong># ${mail.licitacion}</strong> que finalizar&aacute; el pr&oacute;ximo <strong>${moment(mail.finaliza).format("DD/MM/YYYY")}</strong></p>
+                        <p>En el día de hoy se generó la solicitud de Cotización <strong># ${mail.licitacion}</strong> que finalizará el próximo <strong>${moment(mail.finaliza).format("DD/MM/YYYY")}</strong></p>
                         <ul>
                             <li>Insumo: <strong>${mail.descrip}</strong></li>
                             <li>Cantidad: <strong>${mail.cantidad} ${mail.unidad}</strong></li>
@@ -653,8 +653,8 @@ exports.sendMailsToSuppliers = async (req, result) => {
 
     }
         catch(error) {
-            console.log('error')
-            result.json({ error: err})
+            console.log('error', error)
+            result.json({ error: error})
     }
 } 
 

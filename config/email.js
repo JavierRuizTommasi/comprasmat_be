@@ -1,6 +1,6 @@
 module.exports = {
-    HOST: 'dtcwin006.ferozo.com',
-    PORT: 25,
+    HOST: 'smtp.gmail.com',
+    PORT: 587,
     SECURE: false,
     // EMAIL: 'javiertommasi@gmail.com',
     // PASS: 'N1422tita1901',

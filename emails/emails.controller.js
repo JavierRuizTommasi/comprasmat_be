@@ -8,7 +8,7 @@ exports.sendEmail = async (req, res, next) => {
     
     if (mail.language == 'es') {
         mailTitu = 'PROAGRO - Notificación de Contacto'
-        fromMsg = '"Proagro contacto" <proagro@neocore.com.ar>'
+        fromMsg = '"Proagro contacto" <' + EMAIL.EMAIL + '>'
         contentHTML = `
             <div style="display: flex;">
                 <img style="height: 57px; width: 95px; margin-right: 10px;" src="cid:logo"/>
@@ -24,7 +24,7 @@ exports.sendEmail = async (req, res, next) => {
             `
     } else {
         mailTitu = 'PROAGRO - Notification of Contact'
-        fromMsg = '"Proagro contact" <proagro@neocore.com.ar>'
+        fromMsg = '"Proagro contact" <' + EMAIL.EMAIL + '>'
         contentHTML = `
             <div style="display: flex;">
                 <img style="height: 57px; width: 95px; margin-right: 10px;" src="cid:logo"/>
@@ -55,10 +55,9 @@ exports.sendEmail = async (req, res, next) => {
     })
 
     const mailOptions = {
-        from: '"Proagro contacto" <proagro@neocore.com.ar>', 
+        from: fromMsg,
         to: mail.email,
-        bcc: EMAIL.EMAIL_AUTORIZ,
-        bcc: 'technical_support@proagrolab.com.ar',
+        bcc: [EMAIL.EMAIL_AUTORIZ],
         subject: mailTitu,
         html: contentHTML,
         attachments: [{
@@ -70,7 +69,7 @@ exports.sendEmail = async (req, res, next) => {
 
     await transporter.sendMail(mailOptions, function(error, info){
         if (error) {
-            console.log('Error'. error.message)
+            console.log('Error', error.message)
             res.json({Error: error.message})
         } else {
             console.log('Email sent', info.response)
